@@ -1,18 +1,22 @@
 <br>
 
-# Title
+# Design
 
-Description
+- [ ] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+- [ ] Dolore magna aliqua.
+- [ ] Duis aute irure dolor in reprehenderit.
 
 <br>
 <br>
 <br>
 
 <!--
+HOW TO ADD CO-AUTHORS IN COMMIT MESSAGES:
 Co-authored-by: Deepak <77573925+deepakkrish212@users.noreply.github.com>
 Co-authored-by: Marcus <79320268+0nab@users.noreply.github.com>
 Co-authored-by: Soobin <soobinrho@gmail.com>
 
+ADDING A CENTER-ALIGNED IMAGE EXAMPLE:
 <br>
 <br>
 
