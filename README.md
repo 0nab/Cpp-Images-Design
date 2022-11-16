@@ -36,11 +36,13 @@ extracting a subset of the image.
 <br>
 
 ## To do
-- Now, we gotta add specific design plans,
-such as what data types we're gonna use --
-vectors of unsigned integer?
-- What kind of files we'll have in our project
--- e.g. `main.cpp`, `images.h`, and `images.cpp`
+- Now, we gotta add specific design plans.
+What data types are we gonna use?
+A vector of unsigned integer?
+How do we make our data structures future proof
+for 16-bit and 32-bit images?
+- What kind of files are we gonna have in our project?
+`main.cpp`, `images.h`, and `images.cpp`?
 
 
 
