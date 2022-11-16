@@ -8,29 +8,29 @@ our *C++ Programming* course assignment.
 <br>
 
 ***Core Design***
-- [ ] All bits are stored as a single-dinension array.
+- [ ] All bits are stored as a single-dimension array.
 - [ ] Internally, we keep track of the image structure using
 three variables: `nl` number of lines, `ns` number of samples,
 and `nb` number of bands.
 - [ ] Support for 8-bit images with unsigned integers, but at the same time,
-all of our valuables should be future proof for 16-bit and 32-bit as well.
+all of our variables are future proof for 16-bit and 32-bit images as well.
 
 <br>
 
-***Constructors Design***
-- [ ] Constructor for `.png` files.
+***Constructor Design***
+- [ ] Constructor by reading `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
-- [ ] Constructor for a wedge of pixel values for testing purposes.
+- [ ] Constructor by a wedge of pixel values for testing purposes.
 - [ ] Copy / move operator overloads.
 - [ ] Destructors to prevent memory leaks.
 
 <br>
 
-***Helper Functions Design***
+***Helper Function Design***
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
 - [ ] A function for adjusting brightness by scaling and offsetting
-(gain and bias).
+-- i.e. gain and bias.
 - [ ] A function for extracting a smoothed, downsampled subset.
 
 <br>
