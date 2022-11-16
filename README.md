@@ -14,12 +14,11 @@ three variables: `nl` number of lines, `ns` number of samples,
 and `nb` number of bands.
 - [ ] Support for 8-bit images with unsigned integers, but at the same time,
 all of our valuables should be future proof for 16-bit and 32-bit as well.
-- [ ] Duis aute irure dolor in reprehenderit.
 
 <br>
 
 ***Constructors Design***
-- [ ] Constrictor for `.png` files.
+- [ ] Constructor for `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
 - [ ] Constructor for a wedge of pixel values for testing purposes.
 - [ ] Copy / move operator overloads.
@@ -28,11 +27,15 @@ all of our valuables should be future proof for 16-bit and 32-bit as well.
 <br>
 
 ***Helper Functions Design***
-- [ ] ...
+- [ ] A function for subsetting an image -- i.e.
+extracting a subset of the image.
+- [ ] A function for adjusting brightness by scaling and offsetting
+(gain and bias).
+- [ ] A function for extracting a smoothed, downsampled subset.
 
 <br>
 
-To do:
+## To do
 - Now, we gotta add specific design plans,
 such as what data types we're gonna use --
 vectors of unsigned integer?
