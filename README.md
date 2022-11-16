@@ -1,14 +1,39 @@
 <br>
 
-# Design
+# A C++ class for images
 
-- [ ] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-- [ ] Dolore magna aliqua.
+Created as a part of
+our *C++ Programming* course assignment.
+
+***Core Design***
+- [ ] All bits are stored as a single-dinension array.
+- [ ] Internally, we keep track of the image structure using
+three variables: `nl` number of lines, `ns` number of samples,
+and `nb` number of bands.
+- [ ] Support for 8-bit images with unsigned integers, but at the same time,
+all of our valuables should be future proof for 16-bit and 32-bit as well.
 - [ ] Duis aute irure dolor in reprehenderit.
 
+***Constructors Design***
+- [ ] Constrictor for `.png` files.
+- [ ] Constructor by a constant value for testing purposes.
+- [ ] Constructor for a wedge of pixel values for testing purposes.
+- [ ] Copy / move operator overloads.
+- [ ] Destructors to prevent memory leaks.
+
+***
+
 <br>
 <br>
 <br>
+
+To do:
+- Now, we gotta add specific design plans,
+such as what data types we're gonna use --
+vectors of unsigned integer?
+- What kind of files we'll have in our project
+-- e.g. `main.cpp`, `images.h`, and `images.cpp`
+
 
 <!--
 HOW TO ADD CO-AUTHORS IN COMMIT MESSAGES:
