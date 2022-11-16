@@ -38,6 +38,11 @@ all of our variables are future proof for 16-bit and 32-bit images as well.
 <br>
 
 ***Helper Function Design***
+```c++
+// Image.h
+getSubset(Image image, int top, int left, int right, int bottom);
+setBrightness(Image image, int gain, int bias);
+```
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
 - [ ] A function for adjusting brightness by scaling and offsetting
