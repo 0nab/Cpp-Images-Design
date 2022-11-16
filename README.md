@@ -5,6 +5,8 @@
 Created as a part of
 our *C++ Programming* course assignment.
 
+<br>
+
 ***Core Design***
 - [ ] All bits are stored as a single-dinension array.
 - [ ] Internally, we keep track of the image structure using
@@ -14,6 +16,8 @@ and `nb` number of bands.
 all of our valuables should be future proof for 16-bit and 32-bit as well.
 - [ ] Duis aute irure dolor in reprehenderit.
 
+<br>
+
 ***Constructors Design***
 - [ ] Constrictor for `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
@@ -21,10 +25,11 @@ all of our valuables should be future proof for 16-bit and 32-bit as well.
 - [ ] Copy / move operator overloads.
 - [ ] Destructors to prevent memory leaks.
 
-***
+<br>
 
-<br>
-<br>
+***Helper Functions Design***
+- [ ] ...
+
 <br>
 
 To do:
@@ -34,6 +39,13 @@ vectors of unsigned integer?
 - What kind of files we'll have in our project
 -- e.g. `main.cpp`, `images.h`, and `images.cpp`
 
+
+
+
+
+<br>
+<br>
+<br>
 
 <!--
 HOW TO ADD CO-AUTHORS IN COMMIT MESSAGES:
