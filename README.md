@@ -10,10 +10,10 @@ our *C++ Programming* assignment.
 <br>
 
 ```bash
-# tree
-├── main.cpp     # main driver
-├── Image.cpp    # definitions for the class and helper functions
-└── Image.h      # declarations for the class and helper functions
+# Project structure
+├── main.cpp     # Main driver
+├── Image.cpp    # Definitions for the class and helper functions
+└── Image.h      # Declarations for the class and helper functions
 ```
 
 <br>
