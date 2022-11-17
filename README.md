@@ -29,20 +29,33 @@ all of our variables are future proof for 16-bit and 32-bit images as well.
 <br>
 
 ***Constructor Design***
+```c++
+// Image.h
+Image(const String& fileName);
+Image(const int& valueRGB);
+Image(const vector<int>& valuesRGB);
+~Image();
+
+// We declare and define operator overloading outside the class
+// as helper functions rather than declaring and defining inside class
+// as recommended by our textbook.
+Image& Image::operator=(const Image& image);
+// TODO: move operator overload
+```
 - [ ] Constructor by reading `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
 - [ ] Constructor by a wedge of pixel values for testing purposes.
+- [ ] Destructor to prevent memory leaks.
 - [ ] Copy / move operator overloads.
-- [ ] Destructors to prevent memory leaks.
 
 <br>
 
 ***Helper Function Design***
 ```c++
 // Image.h
-getSubset(Image image, int top, int left, int right, int bottom);
-getSmoothedSubset(Image image, int smoothValue);
-setBrightness(Image image, int gain, int bias);
+getSubset(Image& image, const int& top, const int& left, const int& right, const int& bottom);
+getSmoothedSubset(Image& image, const int& smoothValue);
+setBrightness(Image& image, const int& gain, const int& bias);
 ```
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
