@@ -34,19 +34,32 @@ all of our variables are future proof for 16-bit and 32-bit images as well.
 Image(const String& fileName);
 Image(const int& valueRGB);
 Image(const vector<int>& valuesRGB);
+Image(const Image& imageCopy);
 ~Image();
 
-// We declare and define operator overloading outside the class
-// as helper functions rather than declaring and defining inside class
-// as recommended by our textbook.
+// Move operator overloading
 Image& Image::operator=(const Image& image);
-// TODO: move operator overload
 ```
 - [ ] Constructor by reading `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
 - [ ] Constructor by a wedge of pixel values for testing purposes.
+- [ ] Constructor by copying a pre-existing image.
 - [ ] Destructor to prevent memory leaks.
-- [ ] Copy / move operator overloads.
+- [ ] Move operator overloading.
+
+<!--
+MOVE OPERATOR OVERLOADING EXAMPLE
+Source: our textbook
+vector& vector::operator=(vector&& a) // move assignment
+{
+delete[] elem; // deallocate old space
+elem = a.elem; // copy a’s elem and sz
+sz = a.sz;
+a.elem = nullptr; // make a the empty vector
+a.sz = 0;
+return *this; // return a self-reference (see §17.10)
+}
+-->
 
 <br>
 
