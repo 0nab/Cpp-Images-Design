@@ -41,13 +41,14 @@ all of our variables are future proof for 16-bit and 32-bit images as well.
 ```c++
 // Image.h
 getSubset(Image image, int top, int left, int right, int bottom);
+getSmoothedSubset(Image image, int smoothValue);
 setBrightness(Image image, int gain, int bias);
 ```
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
+- [ ] A function for extracting a smoothed, downsampled subset.
 - [ ] A function for adjusting brightness by scaling and offsetting
 -- i.e. gain and bias.
-- [ ] A function for extracting a smoothed, downsampled subset.
 
 <br>
 <br>
