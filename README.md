@@ -5,7 +5,7 @@
 # A C++ class for images
 
 Created as a part of
-our *C++ Programming* course assignment.
+our *C++ Programming* assignment.
 
 <br>
 
