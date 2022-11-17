@@ -66,13 +66,15 @@ return *this; // return a self-reference (see §17.10)
 ***Helper Function Design***
 ```c++
 // Image.h
-getSubset(Image& image, const int& top, const int& left, const int& right, const int& bottom);
-getSmoothedSubset(Image& image, const int& smoothValue);
-setBrightness(Image& image, const int& gain, const int& bias);
+Image getSubset(Image& image, const int& top, const int& left, const int& right, const int& bottom);
+Image getSmoothedSubset(Image& image, const int& smoothValue);
+void printHistogram(Image& image);
+void setBrightness(Image& image, const int& gain, const int& bias);
 ```
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
 - [ ] A function for extracting a smoothed, downsampled subset.
+- [ ] A function for printing a histogram, which is a vector of brightness-pixel-value counts.
 - [ ] A function for adjusting brightness by scaling and offsetting
 -- i.e. gain and bias.
 
