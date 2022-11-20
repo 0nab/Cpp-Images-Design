@@ -66,8 +66,8 @@ return *this; // return a self-reference (see §17.10)
 ***Helper Function Design***
 ```c++
 // Image.h
-Image getSubset(Image& image, const int& top, const int& left, const int& right, const int& bottom);
-Image getSmoothedSubset(Image& image, const int& smoothValue);
+Image getSubset(const Image& image, const int& top, const int& left, const int& right, const int& bottom);
+Image getSmoothedSubset(const Image& image, const int& smoothValue);
 void printHistogram(Image& image);
 void setBrightness(Image& image, const int& gain, const int& bias);
 ```
