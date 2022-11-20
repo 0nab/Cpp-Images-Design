@@ -25,6 +25,7 @@ three variables: `nl` number of lines, `ns` number of samples,
 and `nb` number of bands.
 - [ ] Support for 8-bit images, but at the same time,
 all of our variables are future proof for 16-bit and 32-bit images as well.
+We'll paramatize the image bit value -- e.g. `int BIT = 8`.
 
 <br>
 
