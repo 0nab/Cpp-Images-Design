@@ -41,7 +41,7 @@ Image(const Image& imageCopy);
 // Move operator overloading
 Image& Image::operator=(Image&& image);
 ```
-- [ ] Constructor by reading `.png` files.
+- [ ] Constructor by reading `.pgm` files.
 - [ ] Constructor by a constant value for testing purposes.
 - [ ] Constructor by a wedge of pixel values for testing purposes.
 - [ ] Constructor by copying a pre-existing image.
