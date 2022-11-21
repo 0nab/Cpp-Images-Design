@@ -72,6 +72,7 @@ Image getSubset(const Image& image, const int& top, const int& left, const int& 
 Image getSmoothedSubset(const Image& image, const int& smoothValue);
 void printHistogram(Image& image);
 void setBrightness(Image& image, const int& gain, const int& bias);
+Image sharpening(const Image& image, int& width, int& height);
 ```
 - [ ] A function for getting a copy.
 - [ ] A function for subsetting an image -- i.e.
@@ -80,6 +81,7 @@ extracting a subset of the image.
 - [ ] A function for printing a histogram, which is a vector of brightness-pixel-value counts.
 - [ ] A function for adjusting brightness by scaling and offsetting
 -- i.e. gain and bias.
+- [ ] A function to sharpen your image using Gaussian Blur
 
 <br>
 <br>
