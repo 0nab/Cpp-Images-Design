@@ -39,7 +39,7 @@ Image(const Image& imageCopy);
 ~Image();
 
 // Move operator overloading
-Image& Image::operator=(const Image& image);
+Image& Image::operator=(Image&& image);
 ```
 - [ ] Constructor by reading `.png` files.
 - [ ] Constructor by a constant value for testing purposes.
@@ -50,7 +50,7 @@ Image& Image::operator=(const Image& image);
 
 <!--
 MOVE OPERATOR OVERLOADING EXAMPLE
-Source: our textbook
+Source: Chapter 18 on our textbook
 vector& vector::operator=(vector&& a) // move assignment
 {
 delete[] elem; // deallocate old space
