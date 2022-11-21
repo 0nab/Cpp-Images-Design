@@ -8,13 +8,11 @@
  *    Hw: A Container class for handling images.
  */
 
+#include <iostream>  // Required for cout
 #include "Image.h"
 
-using namespace DMS;  // Deepak, Marcus, Soobin
-
-int main() {
+namespace DMS {  // Deepak, Marcus, and Soobin
 
 
-    // Return 0 to signal success
-    return 0;
+
 }
