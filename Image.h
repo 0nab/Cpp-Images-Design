@@ -30,7 +30,6 @@ class Image{
         vector<int> pixels;
 };
 
-//change by marcus
 // Helper declarations for the Image class
 Image clone(const Image& image);
 Image getSubset (const Image& image, int top, int bottom, int left, int right);
