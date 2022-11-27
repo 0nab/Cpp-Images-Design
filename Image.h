@@ -25,9 +25,10 @@ class Image{
 
         Image& Image::operator=(Image&& image);
     private:
-        int width;
-        int height;
-        int* pixels;
+        int rows;
+        int cols;
+        // Vector of pixels
+        vector<int> pixels;
 };
 
 // Helper declarations for the Image class
