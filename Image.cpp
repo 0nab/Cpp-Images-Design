@@ -9,7 +9,7 @@
  */
 
 #include <iostream> // Required for cout
-#include <string> // Required for string
+#include <string>   // Required for string
 #include "Image.h"
 #include <fstream>
 
@@ -24,7 +24,7 @@ Image::Image()
     maxValue = 0;
 }
 
-Image::Image(const string& filename)
+Image::Image(const string &filename)
 {
     ifstream file(filename);
 
@@ -36,41 +36,63 @@ Image::Image(const string& filename)
         Image();
         return;
     }
-    
-    // Read the first line of the file
+
+    // Read the file and get the rows, cols, and max value
     string line;
-    while (getline(file, line))
+
+    while(file >> line)
     {
-        // Check if the line is a comment
-        if (line[0] == '#')
+        if (line == "P2")
         {
-            continue;
-        }
-        // Check if the line is the image size
-        else if (line[0] == 'P')
-        {
-            // Read the image size
-            file >> cols >> rows;
-            // Read the max value
+            file >> cols;
+            file >> rows;
             file >> maxValue;
-            // Read the pixels
-            int pixel;
-            while (file >> pixel)
-            {
-                pixels.push_back(pixel);
-            }
+            break;
         }
     }
 
-    file.close();
+    // Read the pixels
+    int pixel;
+    while(file >> pixel)
+    {
+        pixels.push_back(pixel);
+    }
 
+    file.close();
 }
 
-Image::Image(const int& valueRGB)
+Image::Image(const int &valueRGB)
 {
     rows = 1;
     cols = 1;
     pixels = vector<int>();
     pixels.push_back(valueRGB);
     maxValue = 255;
+}
+
+Image::Image(const vector<int> pixels)
+{
+    rows = 1;
+    cols = pixels.size();
+    this->pixels = pixels;
+    maxValue = 255;
+}
+
+Image::Image(const Image &imageCopy)
+{
+    rows = imageCopy.rows;
+    cols = imageCopy.cols;
+    pixels = imageCopy.pixels;
+    maxValue = imageCopy.maxValue;
+}
+
+Image::~Image()
+{
+    // Nothing to do here
+}
+
+// Implement the getPixels() method here
+vector<int> Image::getPixels() const
+{
+    return pixels;
 }

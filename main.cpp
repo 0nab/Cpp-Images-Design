@@ -10,10 +10,19 @@
 
 #include "Image.h"
 
-using namespace DMS;  // Deepak, Marcus, Soobin
+int main()
+{
 
-int main() {
+    // Create an image object
+    Image image("test.pgm");
 
+    // Print the image pixels vector
+
+    vector<int> pixels = image.getPixels();
+    for (int i = 0; i < pixels.size(); i++)
+    {
+        cout << pixels[i] << " ";
+    }
 
     // Return 0 to signal success
     return 0;
