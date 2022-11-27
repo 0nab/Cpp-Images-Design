@@ -19,7 +19,6 @@ class Image{
         Image(const string& filename);
         Image(const int& valueRGB);
         Image(const vector<int>);
-        Image(const vector<int>);
         Image(const Image& imageCopy);
         ~Image();
 
@@ -31,6 +30,7 @@ class Image{
         vector<int> pixels;
 };
 
+//change by marcus
 // Helper declarations for the Image class
 Image clone(const Image& image);
 Image getSubset (const Image& image, int top, int bottom, int left, int right);
