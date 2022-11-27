@@ -11,8 +11,3 @@
 #include <iostream>  // Required for cout
 #include "Image.h"
 
-namespace DMS {  // Deepak, Marcus, and Soobin
-
-
-
-}
