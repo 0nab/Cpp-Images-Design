@@ -150,7 +150,7 @@ Image clone(const Image &image)
     copy.setCols(image.getCols());
     copy.setPixels(image.getPixels());
     copy.setMaxValue(image.getMaxValue());
-    
+
     return copy;
 }
 
@@ -169,7 +169,12 @@ Image getSmoothedSubset(const Image &image, const int &smoothValue)
 // Implement the printHistogram() helper function here
 void printHistogram(const Image &image)
 {
-    
+    //(Marcus) I used the code that Deepak created to try printing out values from the test.pgm file he created.
+    vector<int> pixels = image.getPixels();
+    for (int i = 0; i < pixels.size(); i++)
+    {
+        cout << pixels[i] << " ";
+    }
 }
 
 // Implement the setBrightness() helper function here
