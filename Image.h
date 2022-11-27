@@ -19,6 +19,7 @@ class Image{
         Image(const string& filename);
         Image(const int& valueRGB);
         Image(const vector<int>);
+        Image(const vector<int>);
         Image(const Image& imageCopy);
         ~Image();
 
