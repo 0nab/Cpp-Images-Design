@@ -28,6 +28,8 @@ class Image{
         int cols;
         // Vector of pixels
         vector<int> pixels;
+        // Max value of the pixels
+        int maxValue;
 };
 
 // Helper declarations for the Image class
