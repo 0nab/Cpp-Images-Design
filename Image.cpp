@@ -145,7 +145,13 @@ void Image::setMaxValue(const int &maxValue)
 // Implement the clone() helper function here
 Image clone(const Image &image) 
 {
-
+    Image copy;
+    copy.setRows(image.getRows());
+    copy.setCols(image.getCols());
+    copy.setPixels(image.getPixels());
+    copy.setMaxValue(image.getMaxValue());
+    
+    return copy;
 }
 
 // Implement the getSubset() helper function here
