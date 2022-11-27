@@ -18,14 +18,29 @@ class Image
 public:
     Image();
     Image(const string &filename);
-    Image(const int &valueRGB);
-    Image(const vector<int>);
+    Image(const int &valueRGB, const int &rows, const int &cols, const int &maxValue);
+    Image(const vector<int>, const int & rows, const int &cols);
     Image(const Image &imageCopy);
     ~Image();
 
     // Image &Image::operator=(Image &&image);
     //Getter for pixels
     vector<int> getPixels() const;
+    //Getter for rows
+    int getRows() const;
+    //Getter for cols
+    int getCols() const;
+    //Getter for maxValue
+    int getMaxValue() const;
+
+    //Setters for pixels
+    void setPixels(const vector<int> &pixels);
+    //Setters for rows
+    void setRows(const int &rows);
+    //Setters for cols
+    void setCols(const int &cols);
+    //Setters for maxValue
+    void setMaxValue(const int &maxValue);
 
 private:
     int rows;

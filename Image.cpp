@@ -40,7 +40,7 @@ Image::Image(const string &filename)
     // Read the file and get the rows, cols, and max value
     string line;
 
-    while(file >> line)
+    while (file >> line)
     {
         if (line == "P2")
         {
@@ -53,7 +53,7 @@ Image::Image(const string &filename)
 
     // Read the pixels
     int pixel;
-    while(file >> pixel)
+    while (file >> pixel)
     {
         pixels.push_back(pixel);
     }
@@ -61,29 +61,32 @@ Image::Image(const string &filename)
     file.close();
 }
 
-Image::Image(const int &valueRGB)
+Image::Image(const int &valueRGB, const int &rows, const int &cols, const int &maxValue)
 {
-    rows = 1;
-    cols = 1;
-    pixels = vector<int>();
-    pixels.push_back(valueRGB);
-    maxValue = 255;
+    this->rows = rows;
+    this->cols = cols;
+    this->maxValue = maxValue;
+
+    for (int i = 0; i < rows * cols; i++)
+    {
+        pixels.push_back(valueRGB);
+    }
 }
 
-Image::Image(const vector<int> pixels)
+Image::Image(const vector<int> pixels, const int &rows, const int &cols)
 {
-    rows = 1;
-    cols = pixels.size();
+    this->rows =rows;
+    this->cols = cols;
     this->pixels = pixels;
     maxValue = 255;
 }
 
 Image::Image(const Image &imageCopy)
 {
-    rows = imageCopy.rows;
-    cols = imageCopy.cols;
-    pixels = imageCopy.pixels;
-    maxValue = imageCopy.maxValue;
+    rows = imageCopy.getRows();
+    cols = imageCopy.getCols();
+    pixels = imageCopy.getPixels();
+    maxValue = imageCopy.getMaxValue();
 }
 
 Image::~Image()
@@ -95,4 +98,46 @@ Image::~Image()
 vector<int> Image::getPixels() const
 {
     return pixels;
+}
+
+// Implement the getRows() method here
+int Image::getRows() const
+{
+    return rows;
+}
+
+// Implement the getCols() method here
+int Image::getCols() const
+{
+    return cols;
+}
+
+// Implement the getMaxValue() method here
+int Image::getMaxValue() const
+{
+    return maxValue;
+}
+
+// Implement the setPixels() method here
+void Image::setPixels(const vector<int> &pixels)
+{
+    this->pixels = pixels;
+}
+
+// Implement the setRows() method here
+void Image::setRows(const int &rows)
+{
+    this->rows = rows;
+}
+
+// Implement the setCols() method here
+void Image::setCols(const int &cols)
+{
+    this->cols = cols;
+}
+
+// Implement the setMaxValue() method here
+void Image::setMaxValue(const int &maxValue)
+{
+    this->maxValue = maxValue;
 }
