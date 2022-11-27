@@ -157,13 +157,13 @@ Image clone(const Image &image)
 // Implement the getSubset() helper function here
 Image getSubset(const Image &image, int top, int bottom, int left, int right) 
 {
-    
+    // Find a wat to index thru the pixel vector.
 }
 
 // Implement the getSmoothedSubset() helper function here
 Image getSmoothedSubset(const Image &image, const int &smoothValue) 
 {
-    
+    //We do not implement this function. 
 }
 
 // Implement the printHistogram() helper function here
@@ -180,5 +180,5 @@ void printHistogram(const Image &image)
 // Implement the setBrightness() helper function here
 void setBrightness(Image &image, const int &gain, const int &bias)
 {
-    
+    //What is the Bias and what value do we gain by.
 }
