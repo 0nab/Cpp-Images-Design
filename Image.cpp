@@ -157,18 +157,19 @@ Image clone(const Image &image)
 // Implement the getSubset() helper function here
 Image getSubset(const Image &image, int top, int bottom, int left, int right) 
 {
-    // Find a wat to index thru the pixel vector.
+    // Find a what to index thru the pixel vector.
 }
 
 // Implement the getSmoothedSubset() helper function here
 Image getSmoothedSubset(const Image &image, const int &smoothValue) 
 {
-    //We do not implement this function. 
+    //How do we smothen the values? 
 }
 
 // Implement the printHistogram() helper function here
 void printHistogram(const Image &image)
 {
+    //Change this, make it value information. like an actual terminal printed histogram.
     //(Marcus) I used the code that Deepak created to try printing out values from the test.pgm file he created.
     vector<int> pixels = image.getPixels();
     for (int i = 0; i < pixels.size(); i++)
