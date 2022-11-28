@@ -18,3 +18,6 @@ final project.
 
 This can be implemented by finding the average of all points
 around that particular pixel.
+
+Likewise, constructor for reading a file is not necessary
+for HW7 Part 2. It's required only for final project.
