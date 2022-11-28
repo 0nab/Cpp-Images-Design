@@ -189,3 +189,6 @@ void setBrightness(Image &image, const int &gain, const int &bias)
 //We need to alocate a long list of bites. We are not supposed to use std::vector.
 //We have to go thru comments in the pgm file
 //Be able to read both p2 and p5. 
+//How to read in p5: we need to use the read function. read all at once.
+//The type we will use id uint8_t for the read in of p5
+//Wedge image = an image that goes from black to white from right to left
