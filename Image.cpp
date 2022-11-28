@@ -183,3 +183,9 @@ void setBrightness(Image &image, const int &gain, const int &bias)
 {
     //What is the Bias and what value do we gain by.
 }
+
+
+//Notes from class
+//We need to alocate a long list of bites. We are not supposed to use std::vector.
+//We have to go thru comments in the pgm file
+//Be able to read both p2 and p5. 
