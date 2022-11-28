@@ -2,6 +2,16 @@
 
 std:uint8_t
 
+### Histogram example
+
+```
+0: ****
+1: **************************
+...
+255: *****
+
+```
+
 ### What is a wedge?
 
 It's the same as a gradient.
