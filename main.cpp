@@ -14,7 +14,7 @@ int main()
 {
 
     // Create an image object
-    Image image("test.pgm");
+    Image image("/Users/marcusjnaess/Desktop/C++_HW/HW7/Cpp-Images-Design/Out ");
 
     // Print the image pixels vector
 

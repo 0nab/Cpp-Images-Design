@@ -158,12 +158,14 @@ Image clone(const Image &image)
 Image getSubset(const Image &image, int top, int bottom, int left, int right) 
 {
     // Find a what to index thru the pixel vector.
+    return image;
 }
 
 // Implement the getSmoothedSubset() helper function here
 Image getSmoothedSubset(const Image &image, const int &smoothValue) 
 {
     //How do we smothen the values? 
+    return image;
 }
 
 // Implement the printHistogram() helper function here
@@ -177,8 +179,8 @@ void printHistogram(const Image &image)
     {
         int element = pixels.at(i);
         vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
-        if (it != vector.end()) {
-            histogram.at(it - v1.begin()) = element + 1;
+        if (it != histogram.end()) {
+            histogram.at(it - histogram.begin()) = element + 1;
         }
         else {
             histogram.push_back(1);
