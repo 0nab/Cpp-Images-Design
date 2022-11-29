@@ -126,7 +126,8 @@ Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
 > 0  3  0  0  0  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15  0  0  0  0
 > 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 > ```
- 
+> ![pgm file example](https://user-images.githubusercontent.com/19341857/204419255-f9d0e254-d8d8-4b05-9359-00d7900a2deb.png)
+>
 
 <br>
 <br>
