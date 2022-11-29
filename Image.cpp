@@ -174,7 +174,15 @@ void printHistogram(const Image &image)
     vector<int> pixels = image.getPixels();
     for (int i = 0; i < pixels.size(); i++)
     {
-        cout << pixels[i] << " ";
+        int element = pixels.at(i);
+        vector<int> histogram;
+        vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
+        if (it != vector.end()) {
+            histogram.at(it - v1.begin()) = element + 1;
+        }
+        else {
+            histogram.push_back(1);
+        }
     }
 }
 
