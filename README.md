@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Image example" src="https://twemoji.maxcdn.com/v/latest/svg/1f60e.svg" width="200px">
+  <img alt="Image example" src="https://user-images.githubusercontent.com/19341857/204509540-cf1d0731-b28c-40c3-a31e-6684070f0892.png">
 </p>
 
 # A C++ class for images
