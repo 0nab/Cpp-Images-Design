@@ -112,7 +112,7 @@ Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
 >
 > The P4 binary format of the same image represents each pixel with a single bit, packing 8 pixels per byte, with the first pixel as the most significant bit. Extra bits are added at the end of each row to fill a whole byte ...
 >
-> ***PGM example***
+> ***PGM example***<br>
 > The PGM and PPM formats (both ASCII and binary versions) have an additional parameter for the maximum value (numbers of grey between black and white) after the X and Y dimensions and before the actual pixel data. Black is 0 and max value is white. There is a newline character at the end of each line.
 > ```
 > P2
