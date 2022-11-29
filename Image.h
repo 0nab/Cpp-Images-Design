@@ -12,12 +12,13 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <iomanip>    // Required for cout<<setw(...)
 
 // Constructor variables
 const std::string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
-const int DEFAULT_COLUMN {30};              // Any integer
+const int DEFAULT_COLUMN {25};              // Any integer
 const int DEFAULT_ROW {10};                 // Any integer
-const int DEFAULT_MAX_VALUE {255};          // Any integer from 0 to 255
+const int DEFAULT_MAX_VALUE {15};          // Any integer from 0 to 255
 
 class Image {
 public :
@@ -166,6 +167,15 @@ public :
 
     // Move assignment operator overloading
     Image& operator=(Image&& image);
+
+    // Scale function
+    Image& adjust(double percentage);
+
+    // Offset function
+    Image& adjust(int xOffset, int yOffset);
+
+    // Histogram function
+    void printHistogram();
 };
 
 bool operator==(const Image& image1, const Image& image2);
