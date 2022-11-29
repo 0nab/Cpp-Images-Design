@@ -23,7 +23,6 @@ int main()
     {
         cout << pixels[i] << " ";
     }
-    
 
 
     // Return 0 to signal success
