@@ -23,8 +23,8 @@ using namespace std;
 
 // Constructor variables
 const string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
-const int DEFAULT_COLUMN {5};         // Any integer
-const int DEFAULT_ROW {5};            // Any integer
+const int DEFAULT_COLUMN {500};         // Any integer
+const int DEFAULT_ROW {500};            // Any integer
 const int DEFAULT_MAX_VALUE {255};     // Any integer from 0 to 255
 
 class Image {
@@ -81,7 +81,7 @@ public :
     unsigned int size() const { return totalColumn*totalRow; }
 
     iterator begin() { return values; }
-    iterator end() { return values+(totalColumn*totalRow); }
+    iterator end() { return values+size(); }
     const iterator begin() const { return values; }
     const iterator end() const { return values+size(); }
 
@@ -146,9 +146,6 @@ public :
                     );
                     values[i] = gradientCalculated;
                 }
-
-                // TODO: Delete after debug
-                /* cout<<i<<" | countColumn="<<countColumn<<" | countRow="<<countRow<<'\n'; */
             }
         }
 
@@ -163,7 +160,58 @@ public :
                 values[i] = valueNew;
             }
         }
+
+    // Copy construtor
+    Image(const Image& image) :
+        pgmType{image.pgmType},
+        totalColumn{image.totalColumn},
+        totalRow{image.totalRow},
+        maxValue{image.maxValue},
+        values{new int[image.size()]} {
+            copy(image.begin(),image.end(),values);
+        }
+
+    // Destructor
+    ~Image() { delete[] values; }
+
+    // Move assignment operator overloading
+    Image& operator=(Image&& image);
 };
+
+Image& Image::operator=(Image&& image) {
+    pgmType = image.pgmType;
+    totalColumn = image.totalColumn;
+    totalRow = image.totalRow;
+    maxValue = image.maxValue;
+
+    // Move the pointer to the new values and delete the old values
+    delete[] values;
+    values = image.values;
+    return *this;
+}
+
+bool operator==(const Image& image1, const Image& image2) {
+    // Check the magic number and the image dimension
+    if (image1.pgmType!=image2.pgmType ||
+        image1.totalColumn!=image2.totalColumn ||
+        image1.totalRow!=image2.totalRow ||
+        image1.maxValue!=image2.maxValue) {
+        return false;
+    }
+
+    // Compare all values
+    else {
+        for (int i=0; i<image1.size(); ++i) {
+            if (image1[i]!=image2[i]) return false;
+        }
+    }
+
+    return true;
+}
+
+bool operator!=(const Image& image1, const Image& image2) {
+    return !(image1==image2);
+}
 
 std::ostream& operator<<(std::ostream& ost, const Image image) {
     /*
@@ -181,8 +229,7 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
                  <<image.maxValue;
 
         // Output all color values in ASCII
-        int totalPixels = image.totalColumn*image.totalRow;
-        for (int i=0; i<totalPixels; ++i) {
+        for (int i=0; i<image.size(); ++i) {
             if (i%image.totalColumn==0) ost<<'\n';
             ost<<image.values[i]<<' ';
         }
@@ -195,15 +242,13 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
                  <<image.maxValue<<'\n';
 
         // Output all color values as bytes
-        int totalPixels = image.totalColumn*image.totalRow;
-        for (int i=0; i<totalPixels; ++i) {
+        for (int i=0; i<image.size(); ++i) {
             ost<<char(image.values[i]);
         }
     }
 
     return ost;
 }
-
 
 void pgmSaveAsFile(const Image& image, string fileName) {
     std::ofstream ofs {fileName};
@@ -220,9 +265,6 @@ int main() {
     /* std::cout<<image; */
     pgmSaveAsFile(image,"testtest.pgm");
 
-    for (int pixel: image) {
-        cout<<pixel<<'\n';
-    }
 
 
 
