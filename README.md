@@ -127,8 +127,15 @@ Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
 > 0  3  0  0  0  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15  0  0  0  0
 > 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 > ```
-> ![pgm file example](https://user-images.githubusercontent.com/19341857/204419255-f9d0e254-d8d8-4b05-9359-00d7900a2deb.png)
+> <img alt="pgm ascii example example" src="https://user-images.githubusercontent.com/19341857/204419255-f9d0e254-d8d8-4b05-9359-00d7900a2deb.png" width="380px">
 >
+> ```
+> P5
+> 24 7
+> 15
+> 000000000000000000000000000500050005000000000000000500050005000000000000000555550005000000000000000500050005000000000000000500050005000000000000000000000000000000000000
+> ```
+> <img alt="pgm binary example" src="https://user-images.githubusercontent.com/19341857/204422179-8e29d573-e839-4f25-a842-2706fcf31878.jpg" width="380px">
 
 <br>
 <br>
