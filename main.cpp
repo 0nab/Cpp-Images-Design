@@ -41,6 +41,9 @@ int main() {
     pgmSaveAsFile(imageGrey,"imageGrey.pgm");
     pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
+    // Print a whitespace for better readability
+    cout<<'\n';
+
     // Return 0 to signal success
     return 0;
 }
