@@ -89,9 +89,8 @@ void pgmSaveAsFile(const Image& image, std::string fileName) {
 }
 
 void Image::printHistogram() {
-    // Count occurences of each color value.
-    // Initialize a vector with `maxValue+1` elements
-    // and initial value of 0.
+    // Count occurences of each color value. Initialize a vector with
+    // `maxValue+1` elements set to 0.
     std::vector<int> counts(maxValue+1, 0);
     for (int i=0; i<size(); ++i) ++counts[values[i]];
 
@@ -104,9 +103,7 @@ void Image::printHistogram() {
         // Calculate percentage and print '*' the same amount
         double percentage = static_cast<double>(counts[i])/size()*100;
         percentage = std::round(percentage);
-        for (int count=0; count<percentage; ++count) {
-            std::cout<<'*';
-        }
+        for (int count=0; count<percentage; ++count) { std::cout<<'*'; }
 
         // End of histogram
         std::cout<<'\n';
