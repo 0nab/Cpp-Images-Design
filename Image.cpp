@@ -95,35 +95,6 @@ void Image::printHistogram() {
     std::vector<int> counts(maxValue+1, 0);
     for (int i=0; i<size(); ++i) ++counts[values[i]];
 
-<<<<<<< HEAD
-// Implement the getSubset() helper function here
-Image getSubset(const Image &image, int top, int bottom, int left, int right) 
-{
-    // Find a what to index thru the pixel vector.
-    return image;
-}
-
-// Implement the getSmoothedSubset() helper function here
-Image getSmoothedSubset(const Image &image, const int &smoothValue) 
-{
-    //How do we smothen the values? 
-    return image;
-}
-
-// Implement the printHistogram() helper function here
-void printHistogram(const Image &image)
-{
-    //Change this, make it value information. like an actual terminal printed histogram.
-    //(Marcus) I used the code that Deepak created to try printing out values from the test.pgm file he created.
-    vector<int> pixels = image.getPixels();
-    vector<int> histogram;
-    for (int i = 0; i < pixels.size(); i++)
-    {
-        int element = pixels.at(i);
-        vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
-        if (it != histogram.end()) {
-            histogram.at(it - histogram.begin()) = element + 1;
-=======
     // Print the results. Align all values neatly.
     // Find how many widths are required for alignment.
     const int howManyTens=std::floor(std::log10(maxValue))+1;
@@ -135,7 +106,6 @@ void printHistogram(const Image &image)
         percentage = std::round(percentage);
         for (int count=0; count<percentage; ++count) {
             std::cout<<'*';
->>>>>>> bfc662d6d4818d33ad151efe327befe807912aa0
         }
 
         // End of histogram
