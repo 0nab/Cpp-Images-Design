@@ -87,3 +87,27 @@ void pgmSaveAsFile(const Image& image, std::string fileName) {
     if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
     else ofs<<image;
 }
+
+// Histogram function
+void Image::printHistogram() {
+    // Count occurence of each color value
+    std::vector<int> counts(maxValue+1, 0);
+    for (int i=0; i<size(); ++i) ++counts[values[i]];
+
+    // Print the results. Align all values neatly.
+    // Find how many setfills are required for alignment.
+    const int howManyTens=std::floor(std::log10(maxValue))+1;
+    for (int i=0; i<maxValue+1; ++i) {
+        std::cout<<std::setw(howManyTens)<<i<<':';
+
+        // Calculate percentage and print '*' the same amount
+        double percentage = static_cast<double>(counts[i])/size()*100;
+        percentage = std::round(percentage);
+        for (int count=0; count<percentage; ++count) {
+            std::cout<<'*';
+        }
+
+        // End of histogram
+        std::cout<<'\n';
+    }
+}

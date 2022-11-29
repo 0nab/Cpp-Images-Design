@@ -8,11 +8,12 @@
  *    Hw: A Container class for handling images.
  */
 
-#include <string>
-#include <iostream>
-#include <fstream>
 #include <cmath>
+#include <string>
+#include <vector>
+#include <fstream>
 #include <iomanip>    // Required for cout<<setw(...)
+#include <iostream>
 
 // Constructor variables
 const std::string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
@@ -168,19 +169,14 @@ public :
     // Move assignment operator overloading
     Image& operator=(Image&& image);
 
-    // Scale function
-    Image& adjust(double percentage);
-
-    // Offset function
-    Image& adjust(int xOffset, int yOffset);
-
     // Histogram function
     void printHistogram();
 };
 
+// Operator overloading
 bool operator==(const Image& image1, const Image& image2);
 bool operator!=(const Image& image1, const Image& image2);
-
 std::ostream& operator<<(std::ostream& ost, const Image image);
 
+// Helper functions
 void pgmSaveAsFile(const Image& image, std::string fileName);
