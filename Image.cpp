@@ -94,7 +94,7 @@ void Image::printHistogram() {
     for (int i=0; i<size(); ++i) ++counts[values[i]];
 
     // Print the results. Align all values neatly.
-    // Find how many setfills are required for alignment.
+    // Find how many widths are required for alignment.
     const int howManyTens=std::floor(std::log10(maxValue))+1;
     for (int i=0; i<maxValue+1; ++i) {
         std::cout<<std::setw(howManyTens)<<i<<':';
