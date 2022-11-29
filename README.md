@@ -21,7 +21,7 @@ g++ -o _ *.cpp
 <br>
 
 ***Core Design***
-- [ ] All bits are stored as a single-dimension data.
+- [ ] All bits are stored as a single-dimensional data.
 - [ ] Internally, we keep track of the image structure using
 three variables: `nl` number of lines, `ns` number of samples,
 and `nb` number of bands.
