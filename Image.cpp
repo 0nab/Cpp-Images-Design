@@ -88,7 +88,6 @@ void pgmSaveAsFile(const Image& image, std::string fileName) {
     else ofs<<image;
 }
 
-// Histogram function
 void Image::printHistogram() {
     // Count occurence of each color value
     std::vector<int> counts(maxValue+1, 0);
