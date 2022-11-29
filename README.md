@@ -84,6 +84,20 @@ extracting a subset of the image.
 - [ ] A function to sharpen your image using Gaussian Blur
 
 <br>
+
+***What are `.pgm` image files?***<br>
+Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
+
+> Netpbm (formerly Pbmplus) is an open-source package of graphics programs and a programming library. It is used mainly in the Unix world ...
+> Several graphics formats are used and defined by the Netpbm project. The portable pixmap format (PPM), the portable graymap format (PGM) and the portable bitmap format (PBM) are image file formats designed to be easily exchanged between platforms ...
+> The "magic number" (Px) at the beginning of a file determines the type, not the file extension ...
+> By the end of 1988, Poskanzer had developed the PGM and PPM formats along with their associated tools and added them to Pbmplus. The final release of Pbmplus was December 10, 1991 ...
+>
+> Each file starts with a two-byte magic number (in ASCII) that identifies the type of file it is (PBM, PGM, and PPM) and its encoding (ASCII/"plain" or binary/"raw"). The magic number is a capital P followed by a single-digit number.
+> | ***Type*** | ***Magic number*** | ***Extension*** | ***Colors*** |
+| Test | 1 | 3 | 3 |
+
+<br>
 <br>
 <br>
 
@@ -96,4 +110,4 @@ HOW TO ADD CO-AUTHORS IN COMMIT MESSAGES:
 Co-authored-by: Deepak <77573925+deepakkrish212@users.noreply.github.com>
 Co-authored-by: Marcus <79320268+0nab@users.noreply.github.com>
 Co-authored-by: Soobin <soobinrho@gmail.com>
-
+-->
