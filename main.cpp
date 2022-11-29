@@ -23,8 +23,8 @@ using namespace std;
 
 // Constructor variables
 const string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
-const int DEFAULT_COLUMN {25};         // Any integer
-const int DEFAULT_ROW {25};            // Any integer
+const int DEFAULT_COLUMN {5};         // Any integer
+const int DEFAULT_ROW {5};            // Any integer
 const int DEFAULT_MAX_VALUE {255};     // Any integer from 0 to 255
 
 class Image {
@@ -66,14 +66,27 @@ public :
      *    0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
      */
 
-    using value_type = int;
-    using iterator = int*;
-
     std::string pgmType;
     int totalColumn;
     int totalRow;
     int maxValue;
     int* values;
+
+    // ----------------------------------------------------------------
+    // STL Requirements
+    // ----------------------------------------------------------------
+    using iterator = int*;
+    using const_iterator = const int*;
+
+    unsigned int size() const { return totalColumn*totalRow; }
+
+    iterator begin() { return values; }
+    iterator end() { return values+(totalColumn*totalRow); }
+    const iterator begin() const { return values; }
+    const iterator end() const { return values+size(); }
+
+    int operator[](int i) { return values[i]; }
+    const int operator[](int i) const { return values[i]; }
 
     // Default constructor
     Image() :
@@ -114,7 +127,7 @@ public :
                     countColumn = 1;
                 }
 
-                // Assign the color values as a gradient
+                // Assign the color value as a gradient
                 if (countColumn<countRow) {
                     gradientCalculated = (
                         std::min(
@@ -168,7 +181,7 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
                  <<image.maxValue;
 
         // Output all color values in ASCII
-        int totalPixels = image.totalColumn * image.totalRow;
+        int totalPixels = image.totalColumn*image.totalRow;
         for (int i=0; i<totalPixels; ++i) {
             if (i%image.totalColumn==0) ost<<'\n';
             ost<<image.values[i]<<' ';
@@ -182,7 +195,7 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
                  <<image.maxValue<<'\n';
 
         // Output all color values as bytes
-        int totalPixels = image.totalColumn * image.totalRow;
+        int totalPixels = image.totalColumn*image.totalRow;
         for (int i=0; i<totalPixels; ++i) {
             ost<<char(image.values[i]);
         }
@@ -207,6 +220,9 @@ int main() {
     /* std::cout<<image; */
     pgmSaveAsFile(image,"testtest.pgm");
 
+    for (int pixel: image) {
+        cout<<pixel<<'\n';
+    }
 
 
 
