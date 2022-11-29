@@ -38,7 +38,7 @@ private:
     //   seperating these numbers can be more than one.
     // - Finally, int maxValue indicates the maximum possible color
     //   value. In other words, this indicates how many grey colors
-    //   there can be between the black and white.
+    //   there can be between the black (0) and white (maxValue).
     // - Every number afterwards is the actual color value for the
     //   image. In `P2`, every value is seperated by a whitespace.
     //   In `P4`, however, there's no whitespace. Instead,
