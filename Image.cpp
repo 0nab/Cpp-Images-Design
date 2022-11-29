@@ -172,10 +172,10 @@ void printHistogram(const Image &image)
     //Change this, make it value information. like an actual terminal printed histogram.
     //(Marcus) I used the code that Deepak created to try printing out values from the test.pgm file he created.
     vector<int> pixels = image.getPixels();
+    vector<int> histogram;
     for (int i = 0; i < pixels.size(); i++)
     {
         int element = pixels.at(i);
-        vector<int> histogram;
         vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
         if (it != vector.end()) {
             histogram.at(it - v1.begin()) = element + 1;

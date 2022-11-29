@@ -23,6 +23,28 @@ int main()
     {
         cout << pixels[i] << " ";
     }
+    
+    cout << "\n";
+    
+    vector<int> histogram;
+    for (int i = 0; i < pixels.size(); i++)
+    {
+        int element = pixels.at(i);
+        vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
+        if (it != histogram.end()) {
+            histogram.at(it - histogram.begin()) = element + 1;
+        }
+        else {
+            histogram.push_back(1);
+        }
+    }
+
+    for (int i = 0; i < histogram.size(); i++)
+    {
+        cout << histogram[i] << " ";
+    }
+    
+
 
     // Return 0 to signal success
     return 0;
