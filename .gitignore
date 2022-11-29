@@ -5,3 +5,9 @@
 *.orig
 *.tmp
 *.exe
+
+
+# Ignore test image files
+test-binary.pgm
+imageGradient.pgm
+imageGrey.pgm

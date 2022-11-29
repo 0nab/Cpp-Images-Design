@@ -13,12 +13,24 @@ using namespace std;
 
 int main() {
 
+    // ----------------------------------------------------------------
+    // 1. Create a gradient image
+    // ----------------------------------------------------------------
+    Image imageGradient {};
+    std::cout<<imageGradient;
+    pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
-    // TEST
-    Image image {};
+    // Print whitespace for readability
+    cout<<'\n'
+        <<'\n';
 
-    /* std::cout<<image; */
-    pgmSaveAsFile(image,"testtest.pgm");
+    // ----------------------------------------------------------------
+    // 2. Create an image with a constant value
+    // ----------------------------------------------------------------
+    Image imageGrey {123};
+    std::cout<<imageGrey;
+    pgmSaveAsFile(imageGrey,"imageGrey.pgm");
+
 
 
 
@@ -26,58 +38,3 @@ int main() {
     // Return 0 to signal success
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------
-// Commented Out
-// ------------------------------------------
-
-/* #include "Image.h" */
-/* int main() */
-/* { */
-/*     // Create an image object */
-/*     Image image("test.pgm"); */
-/*  */
-/*     // Print the image pixels vector */
-/*  */
-/*     vector<int> pixels = image.getPixels(); */
-/*     for (int i = 0; i < pixels.size(); i++) */
-/*     { */
-/*         cout << pixels[i] << " "; */
-/*     } */
-/*  */
-/*  */
-/*     // Return 0 to signal success */
-/*     return 0; */
-/* } */
