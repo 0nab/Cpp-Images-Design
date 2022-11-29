@@ -9,10 +9,14 @@
 <br>
 <br>
 
-# A C++ class for images
+# A C++ container for images
 
-Created as a part of
-our *C++ Programming* assignment.
+***How to Compile and Run***
+```bash
+cd Cpp-Images-Design
+g++ -o _ *.cpp
+./_
+```
 
 <br>
 
