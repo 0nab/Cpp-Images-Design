@@ -110,15 +110,15 @@ Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
 
 <br>
 
-***Helper Function Design***
+***Class Functions Design***
 ```c++
 // Image.h
-Image getSubset(const Image& image, const int& top, const int& left, const int& right, const int& bottom);
-Image getSmoothedSubset(const Image& image, const int& smoothValue);
+Image Image::getSubset(const int& top, const int& left, const int& right, const int& bottom);
+Image Image::getSmoothedSubset(const int& smoothValue);
 void Image::adjust(int scalePercentage);
 void Image::adjust(int xOffset, int yOffset);
-void printHistogram(Image& image);
-void setBrightness(Image& image, const int& gain, const int& bias);
+void Image::printHistogram();
+void Image::setBrightness(const int& gain, const int& bias);
 ```
 - [ ] A function for subsetting an image -- i.e.
 extracting a subset of the image.
