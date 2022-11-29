@@ -19,7 +19,7 @@ our *C++ Programming* assignment.
 <br>
 
 ***Core Design***
-- [ ] All bits are stored as a single-dimension array with `vector<unsigned int>`.
+- [ ] All bits are stored as a single-dimension array.
 - [ ] Internally, we keep track of the image structure using
 three variables: `nl` number of lines, `ns` number of samples,
 and `nb` number of bands.
@@ -67,12 +67,10 @@ return *this; // return a self-reference (see §17.10)
 ***Helper Function Design***
 ```c++
 // Image.h
-Image clone(const Image& image);
 Image getSubset(const Image& image, const int& top, const int& left, const int& right, const int& bottom);
 Image getSmoothedSubset(const Image& image, const int& smoothValue);
 void printHistogram(Image& image);
 void setBrightness(Image& image, const int& gain, const int& bias);
-Image sharpening(const Image& image, int& width, int& height);
 ```
 - [ ] A function for getting a copy.
 - [ ] A function for subsetting an image -- i.e.
@@ -81,7 +79,6 @@ extracting a subset of the image.
 - [ ] A function for printing a histogram, which is a vector of brightness-pixel-value counts.
 - [ ] A function for adjusting brightness by scaling and offsetting
 -- i.e. gain and bias.
-- [ ] A function to sharpen your image using Gaussian Blur
 
 <br>
 
