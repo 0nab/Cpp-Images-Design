@@ -14,22 +14,22 @@ using namespace std;
 int main() {
 
     // ----------------------------------------------------------------
-    // 1. Create a constant image and histogram the image
+    // 1. Create a constant image and print a histogram of the image
     // ----------------------------------------------------------------
     const int CONSTANT_COLOR {13};
     Image imageGrey {CONSTANT_COLOR};
     imageGrey.printHistogram();
 
-    // Print whitespace for better readability
+    // Print a whitespace for better readability
     cout<<'\n';
 
     // ----------------------------------------------------------------
-    // 2. Create a wedge image and histogram the image
+    // 2. Create a wedge image and print a histogram of the image
     // ----------------------------------------------------------------
     Image imageGradient {};
     imageGradient.printHistogram();
 
-    // Print whitespace for better readability
+    // Print a whitespace for better readability
     cout<<'\n';
 
     // ----------------------------------------------------------------
