@@ -153,6 +153,30 @@ public :
             }
         }
 
+    // Constructor by reading from a file
+    Image(std::string fileName) :
+        pgmType{},
+        totalColumn{},
+        totalRow{},
+        maxValue{},
+        values{} {
+	    std::ifstream file {fileName,std::ios_base::binary};
+	    if (!file) {
+		std::cout<<"[ERROR] Can't open the file.\n";
+		return;
+	    }
+
+	    // TODO: Debug
+	    /* std::cout<<std::hex; */
+
+	    int8_t value;
+	    void* valueAddress = &value;
+	    while (file.read(static_cast<char*>(valueAddress),sizeof(char))) {
+		    if (value==' ') {std::cout<<"*";}
+		std::cout<<value;
+	    }
+        }
+
     // Copy construtor
     Image(const Image& image) :
         pgmType{image.pgmType},
@@ -180,3 +204,4 @@ std::ostream& operator<<(std::ostream& ost, const Image image);
 
 // Helper functions
 void pgmSaveAsFile(const Image& image, std::string fileName);
+void readFileAndPrintWhiteSpaces(std::string fileName);

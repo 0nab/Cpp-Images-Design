@@ -13,36 +13,39 @@ using namespace std;
 
 int main() {
 
-    // ----------------------------------------------------------------
-    // 1. Create a constant image and print a histogram of the image
-    // ----------------------------------------------------------------
-    const int CONSTANT_COLOR {13};
-    Image imageGrey {CONSTANT_COLOR};
-    imageGrey.printHistogram();
+    /* // ---------------------------------------------------------------- */
+    /* // 1. Create a constant image and print a histogram of the image */
+    /* // ---------------------------------------------------------------- */
+    /* const int CONSTANT_COLOR {13}; */
+    /* Image imageGrey {CONSTANT_COLOR}; */
+    /* imageGrey.printHistogram(); */
+    /*  */
+    /* // Print a whitespace for better readability */
+    /* cout<<'\n'; */
+    /*  */
+    /* // ---------------------------------------------------------------- */
+    /* // 2. Create a wedge image and print a histogram of the image */
+    /* // ---------------------------------------------------------------- */
+    /* Image imageGradient {}; */
+    /* imageGradient.printHistogram(); */
+    /*  */
+    /* // Print a whitespace for better readability */
+    /* cout<<'\n'; */
+    /*  */
+    /* // ---------------------------------------------------------------- */
+    /* // 3. Print and save the example image files */
+    /* // ---------------------------------------------------------------- */
+    /* cout<<imageGrey */
+    /*     <<"\n\n" */
+    /*     <<imageGradient; */
+    /* pgmSaveAsFile(imageGrey,"imageGrey.pgm"); */
+    /* pgmSaveAsFile(imageGradient,"imageGradient.pgm"); */
+    /*  */
+    /* // Print a whitespace for better readability */
+    /* cout<<'\n'; */
 
-    // Print a whitespace for better readability
-    cout<<'\n';
 
-    // ----------------------------------------------------------------
-    // 2. Create a wedge image and print a histogram of the image
-    // ----------------------------------------------------------------
-    Image imageGradient {};
-    imageGradient.printHistogram();
-
-    // Print a whitespace for better readability
-    cout<<'\n';
-
-    // ----------------------------------------------------------------
-    // 3. Print and save the example image files
-    // ----------------------------------------------------------------
-    cout<<imageGrey
-        <<"\n\n"
-        <<imageGradient;
-    pgmSaveAsFile(imageGrey,"imageGrey.pgm");
-    pgmSaveAsFile(imageGradient,"imageGradient.pgm");
-
-    // Print a whitespace for better readability
-    cout<<'\n';
+    Image imageFile {"test.pgm"};
 
     // Return 0 to signal success
     return 0;
