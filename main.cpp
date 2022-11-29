@@ -17,16 +17,19 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <cmath>
+
 using namespace std;
+
+// Constructor variables
+const string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
+const int DEFAULT_COLUMN {25};         // Any integer
+const int DEFAULT_ROW {25};            // Any integer
+const int DEFAULT_MAX_VALUE {255};     // Any integer from 0 to 255
 
 class Image {
 private :
-    // Used for constructors. You can customize these if you want.
-    const string DEFAULT_PGM_TYPE {"P2"};
-    static const int DEFAULT_COLUMN {50};
-    static const int DEFAULT_ROW {50};
-    static const int DEFAULT_MAX_VALUE {255};
-    static const int DEFAULT_COLOR_VALUE {0};
+
 public :
     /*
      *  PGM IMAGE FILE STRUCTURE
@@ -72,36 +75,63 @@ public :
     int maxValue;
     int* values;
 
-    // Default constructor creates a wedge pgm image.
-    // Example:
-    //   0 1 2 3 4 5 6 7
-    //   1 1 2 3 4 5 6 7
-    //   2 2 2 3 4 5 6 7
-    //   3 3 3 3 4 5 6 7
-    //   4 4 4 4 4 5 6 7
-    //   5 5 5 5 5 5 6 7
-    //   6 6 6 6 6 6 6 7
-    //   7 7 7 7 7 7 7 7
+    // Default constructor
     Image() :
         pgmType{DEFAULT_PGM_TYPE},
         totalColumn{DEFAULT_COLUMN},
         totalRow{DEFAULT_ROW},
         maxValue{DEFAULT_MAX_VALUE},
         values{new int[DEFAULT_COLUMN*DEFAULT_ROW]} {
+            // --------------------------------------------------------
+            // Default constructor creates a pgm image with a gradient
+            // Example:
+            //   0 1 2 3 4 5 6 7
+            //   1 1 2 3 4 5 6 7
+            //   2 2 2 3 4 5 6 7
+            //   3 3 3 3 4 5 6 7
+            //   4 4 4 4 4 5 6 7
+            //   5 5 5 5 5 5 6 7
+            //   6 6 6 6 6 6 6 7
+            //   7 7 7 7 7 7 7 7
+            // --------------------------------------------------------
+
+            // Calculate the right color value increment.
+            // This depends on the dimension of the image
+            // as well as the maximum possible color value.
+            const int largerPixels = std::max(DEFAULT_ROW,DEFAULT_COLUMN);
+            const double gradientQuotient = (
+                DEFAULT_MAX_VALUE/static_cast<double>(largerPixels)
+            );
+            int gradientCalculated;
+
             int countColumn {0};
             int countRow {0};
             for (int i=0; i<DEFAULT_COLUMN*DEFAULT_ROW; ++i) {
+                // Count how many columns and how many rows
                 ++countColumn;
                 if (i!=1 && i%DEFAULT_COLUMN==0) {
                     ++countRow;
                     countColumn = 1;
                 }
 
+                // Assign the color values as a gradient
                 if (countColumn<countRow) {
-                    values[i] = countRow;
+                    gradientCalculated = (
+                        std::min(
+                            std::floor(countRow*gradientQuotient),
+                            static_cast<double>(DEFAULT_MAX_VALUE)
+                        )
+                    );
+                    values[i] = gradientCalculated;
                 }
                 else {
-                    values[i] = countColumn;
+                    gradientCalculated = (
+                        std::min(
+                            std::floor(countColumn*gradientQuotient),
+                            static_cast<double>(DEFAULT_MAX_VALUE)
+                        )
+                    );
+                    values[i] = gradientCalculated;
                 }
 
                 // TODO: Delete after debug
@@ -174,7 +204,7 @@ int main() {
     // TEST
     Image image {};
 
-    std::cout<<image;
+    /* std::cout<<image; */
     pgmSaveAsFile(image,"testtest.pgm");
 
 
