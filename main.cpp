@@ -41,7 +41,6 @@ int main() {
     pgmSaveAsFile(imageGrey,"imageGrey.pgm");
     pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
-
     // Return 0 to signal success
     return 0;
 }
