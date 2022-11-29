@@ -29,11 +29,18 @@ int main() {
     Image imageGradient {};
     imageGradient.printHistogram();
 
+    // Print whitespace for better readability
+    cout<<'\n';
+
     // ----------------------------------------------------------------
-    // 3. Save the example image files
+    // 3. Print and save the example image files
     // ----------------------------------------------------------------
+    cout<<imageGrey
+        <<"\n\n"
+        <<imageGradient;
     pgmSaveAsFile(imageGrey,"imageGrey.pgm");
     pgmSaveAsFile(imageGradient,"imageGradient.pgm");
+
 
     // Return 0 to signal success
     return 0;
