@@ -21,12 +21,12 @@ using namespace std;
 
 class Image {
 private :
-    // Used by the default constructor for creating an empty image
-    const string DEFAULTPGMTYPE {"P2"};
-    static const int DEFAULTCOLUMN {30};
-    static const int DEFAULTROW {10};
-    static const int DEFAULTMAXVALUE {255};
-    static const int DEFAULTCOLORVALUE {0};
+    // Used for constructors. You can customize these if you want.
+    const string DEFAULT_PGM_TYPE {"P2"};
+    static const int DEFAULT_COLUMN {50};
+    static const int DEFAULT_ROW {50};
+    static const int DEFAULT_MAX_VALUE {255};
+    static const int DEFAULT_COLOR_VALUE {0};
 public :
     /*
      *  PGM IMAGE FILE STRUCTURE
@@ -72,26 +72,51 @@ public :
     int maxValue;
     int* values;
 
-    // Default constructor creates an empty pgm image
+    // Default constructor creates a wedge pgm image.
+    // Example:
+    //   0 1 2 3 4 5 6 7
+    //   1 1 2 3 4 5 6 7
+    //   2 2 2 3 4 5 6 7
+    //   3 3 3 3 4 5 6 7
+    //   4 4 4 4 4 5 6 7
+    //   5 5 5 5 5 5 6 7
+    //   6 6 6 6 6 6 6 7
+    //   7 7 7 7 7 7 7 7
     Image() :
-        pgmType{DEFAULTPGMTYPE},
-        totalColumn{DEFAULTCOLUMN},
-        totalRow{DEFAULTROW},
-        maxValue{DEFAULTMAXVALUE},
-        values{new int[DEFAULTCOLUMN*DEFAULTROW]} {
-            for (int i=0; i<DEFAULTCOLUMN*DEFAULTROW; ++i) {
-                values[i] = DEFAULTCOLORVALUE;
+        pgmType{DEFAULT_PGM_TYPE},
+        totalColumn{DEFAULT_COLUMN},
+        totalRow{DEFAULT_ROW},
+        maxValue{DEFAULT_MAX_VALUE},
+        values{new int[DEFAULT_COLUMN*DEFAULT_ROW]} {
+            int countColumn {0};
+            int countRow {0};
+            for (int i=0; i<DEFAULT_COLUMN*DEFAULT_ROW; ++i) {
+                ++countColumn;
+                if (i!=1 && i%DEFAULT_COLUMN==0) {
+                    ++countRow;
+                    countColumn = 1;
+                }
+
+                if (countColumn<countRow) {
+                    values[i] = countRow;
+                }
+                else {
+                    values[i] = countColumn;
+                }
+
+                // TODO: Delete after debug
+                /* cout<<i<<" | countColumn="<<countColumn<<" | countRow="<<countRow<<'\n'; */
             }
         }
 
     // Constructor by a constant color value
     Image(int valueNew) :
-        pgmType{DEFAULTPGMTYPE},
-        totalColumn{DEFAULTCOLUMN},
-        totalRow{DEFAULTROW},
-        maxValue{DEFAULTMAXVALUE},
-        values{new int[DEFAULTCOLUMN*DEFAULTROW]} {
-            for (int i=0; i<DEFAULTCOLUMN*DEFAULTROW; ++i) {
+        pgmType{DEFAULT_PGM_TYPE},
+        totalColumn{DEFAULT_COLUMN},
+        totalRow{DEFAULT_ROW},
+        maxValue{DEFAULT_MAX_VALUE},
+        values{new int[DEFAULT_COLUMN*DEFAULT_ROW]} {
+            for (int i=0; i<DEFAULT_COLUMN*DEFAULT_ROW; ++i) {
                 values[i] = valueNew;
             }
         }
@@ -112,7 +137,7 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
                  <<image.totalColumn<<' '<<image.totalRow<<'\n'
                  <<image.maxValue;
 
-        // Output all color values as ASCII
+        // Output all color values in ASCII
         int totalPixels = image.totalColumn * image.totalRow;
         for (int i=0; i<totalPixels; ++i) {
             if (i%image.totalColumn==0) ost<<'\n';
@@ -146,7 +171,8 @@ void pgmSaveAsFile(const Image& image, string fileName) {
 int main() {
 
 
-    Image image {123};
+    // TEST
+    Image image {};
 
     std::cout<<image;
     pgmSaveAsFile(image,"testtest.pgm");
