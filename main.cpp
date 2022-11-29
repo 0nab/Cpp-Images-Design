@@ -9,22 +9,37 @@
  */
 
 #include "Image.h"
+using namespace std;
 
-int main()
-{
+int main() {
 
-    // Create an image object
-    Image image("/Users/marcusjnaess/Desktop/C++_HW/HW7/Cpp-Images-Design/Out ");
+    // ----------------------------------------------------------------
+    // 1. Create a constant image and print a histogram of the image
+    // ----------------------------------------------------------------
+    const int CONSTANT_COLOR {13};
+    Image imageGrey {CONSTANT_COLOR};
+    imageGrey.printHistogram();
 
-    // Print the image pixels vector
+    // Print a whitespace for better readability
+    cout<<'\n';
 
-    vector<int> pixels = image.getPixels();
-    for (int i = 0; i < pixels.size(); i++)
-    {
-        cout << pixels[i] << " ";
-    }
-    
+    // ----------------------------------------------------------------
+    // 2. Create a wedge image and print a histogram of the image
+    // ----------------------------------------------------------------
+    Image imageGradient {};
+    imageGradient.printHistogram();
 
+    // Print a whitespace for better readability
+    cout<<'\n';
+
+    // ----------------------------------------------------------------
+    // 3. Print and save the example image files
+    // ----------------------------------------------------------------
+    cout<<imageGrey
+        <<"\n\n"
+        <<imageGradient;
+    pgmSaveAsFile(imageGrey,"imageGrey.pgm");
+    pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
     // Return 0 to signal success
     return 0;

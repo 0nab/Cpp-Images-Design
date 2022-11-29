@@ -8,152 +8,94 @@
  *    Hw: A Container class for handling images.
  */
 
-#include <iostream> // Required for cout
-#include <string>   // Required for string
 #include "Image.h"
-#include <fstream>
 
-using namespace std;
+Image& Image::operator=(Image&& image) {
+    pgmType = image.pgmType;
+    totalColumn = image.totalColumn;
+    totalRow = image.totalRow;
+    maxValue = image.maxValue;
 
-// Implement the Image constructor here
-Image::Image()
-{
-    rows = 0;
-    cols = 0;
-    pixels = vector<int>();
-    maxValue = 0;
+    // Move the pointer to the new values and delete the old values
+    delete[] values;
+    values = image.values;
+    return *this;
 }
 
-Image::Image(const string &filename)
-{
-    ifstream file(filename);
-
-    // Check if file exists
-    if (!file)
-    {
-        cout << "File does not exist" << endl;
-        // Calling the default constructor to create an empty image
-        Image();
-        return;
+bool operator==(const Image& image1, const Image& image2) {
+    // Check the magic number and the image dimension
+    if (image1.pgmType!=image2.pgmType ||
+        image1.totalColumn!=image2.totalColumn ||
+        image1.totalRow!=image2.totalRow ||
+        image1.maxValue!=image2.maxValue) {
+        return false;
     }
 
-    // Read the file and get the rows, cols, and max value
-    string line;
-
-    while (file >> line)
-    {
-        if (line == "P2")
-        {
-            file >> cols;
-            file >> rows;
-            file >> maxValue;
-            break;
+    // Compare all values
+    else {
+        for (int i=0; i<image1.size(); ++i) {
+            if (image1[i]!=image2[i]) return false;
         }
     }
 
-    // Read the pixels
-    int pixel;
-    while (file >> pixel)
-    {
-        pixels.push_back(pixel);
+    return true;
+}
+
+bool operator!=(const Image& image1, const Image& image2) {
+    return !(image1==image2);
+}
+
+std::ostream& operator<<(std::ostream& ost, const Image image) {
+    /*
+     *  OUTPUT STREAM OPERATOR OVERLOADING
+     *
+     *  Two possibilities:
+     *  1. pgmType is P2. In this case, print all values in ASCII.
+     *  2. pgmType is P5. In this case, print all values as bytes.
+     */
+
+    if (image.pgmType=="P2") {
+        // Output the magic number, image dimension, and maximum value
+        ost<<image.pgmType<<'\n'
+                 <<image.totalColumn<<' '<<image.totalRow<<'\n'
+                 <<image.maxValue;
+
+        // Output all color values in ASCII
+        for (int i=0; i<image.size(); ++i) {
+            if (i%image.totalColumn==0) ost<<'\n';
+            ost<<image.values[i]<<' ';
+        }
     }
 
-    file.close();
-}
+    else if (image.pgmType=="P5") {
+        // Output the magic number, image dimension, and maximum value
+        ost<<image.pgmType<<'\n'
+                 <<image.totalColumn<<' '<<image.totalRow<<'\n'
+                 <<image.maxValue<<'\n';
 
-Image::Image(const int &valueRGB, const int &rows, const int &cols, const int &maxValue)
-{
-    this->rows = rows;
-    this->cols = cols;
-    this->maxValue = maxValue;
-
-    for (int i = 0; i < rows * cols; i++)
-    {
-        pixels.push_back(valueRGB);
+        // Output all color values as bytes
+        for (int i=0; i<image.size(); ++i) {
+            ost<<char(image.values[i]);
+        }
     }
+
+    return ost;
 }
 
-Image::Image(const vector<int> pixels, const int &rows, const int &cols)
-{
-    this->rows =rows;
-    this->cols = cols;
-    this->pixels = pixels;
-    maxValue = 255;
+void pgmSaveAsFile(const Image& image, std::string fileName) {
+    std::ofstream ofs {fileName};
+    if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
+    else ofs<<image;
 }
 
-Image::Image(const Image &imageCopy)
-{
-    rows = imageCopy.getRows();
-    cols = imageCopy.getCols();
-    pixels = imageCopy.getPixels();
-    maxValue = imageCopy.getMaxValue();
-}
+void Image::printHistogram() {
+    // Count occurences of each color value.
+    // Initialize a vector with `maxValue+1` elements
+    // and initial value of 0.
+    std::vector<int> counts(maxValue+1, 0);
+    for (int i=0; i<size(); ++i) ++counts[values[i]];
 
-Image::~Image()
-{
-    // Nothing to do here
-}
-
-// Implement the getPixels() method here
-vector<int> Image::getPixels() const
-{
-    return pixels;
-}
-
-// Implement the getRows() method here
-int Image::getRows() const
-{
-    return rows;
-}
-
-// Implement the getCols() method here
-int Image::getCols() const
-{
-    return cols;
-}
-
-// Implement the getMaxValue() method here
-int Image::getMaxValue() const
-{
-    return maxValue;
-}
-
-// Implement the setPixels() method here
-void Image::setPixels(const vector<int> &pixels)
-{
-    this->pixels = pixels;
-}
-
-// Implement the setRows() method here
-void Image::setRows(const int &rows)
-{
-    this->rows = rows;
-}
-
-// Implement the setCols() method here
-void Image::setCols(const int &cols)
-{
-    this->cols = cols;
-}
-
-// Implement the setMaxValue() method here
-void Image::setMaxValue(const int &maxValue)
-{
-    this->maxValue = maxValue;
-}
-
-// Implement the clone() helper function here
-Image clone(const Image &image) 
-{
-    Image copy;
-    copy.setRows(image.getRows());
-    copy.setCols(image.getCols());
-    copy.setPixels(image.getPixels());
-    copy.setMaxValue(image.getMaxValue());
-
-    return copy;
-}
-
+<<<<<<< HEAD
 // Implement the getSubset() helper function here
 Image getSubset(const Image &image, int top, int bottom, int left, int right) 
 {
@@ -181,24 +123,22 @@ void printHistogram(const Image &image)
         vector<int>::iterator it = find(histogram.begin(), histogram.end(), element);
         if (it != histogram.end()) {
             histogram.at(it - histogram.begin()) = element + 1;
+=======
+    // Print the results. Align all values neatly.
+    // Find how many widths are required for alignment.
+    const int howManyTens=std::floor(std::log10(maxValue))+1;
+    for (int i=0; i<maxValue+1; ++i) {
+        std::cout<<std::setw(howManyTens)<<i<<':';
+
+        // Calculate percentage and print '*' the same amount
+        double percentage = static_cast<double>(counts[i])/size()*100;
+        percentage = std::round(percentage);
+        for (int count=0; count<percentage; ++count) {
+            std::cout<<'*';
+>>>>>>> bfc662d6d4818d33ad151efe327befe807912aa0
         }
-        else {
-            histogram.push_back(1);
-        }
+
+        // End of histogram
+        std::cout<<'\n';
     }
 }
-
-// Implement the setBrightness() helper function here
-void setBrightness(Image &image, const int &gain, const int &bias)
-{
-    //What is the Bias and what value do we gain by.
-}
-
-
-//Notes from class
-//We need to alocate a long list of bites. We are not supposed to use std::vector.
-//We have to go thru comments in the pgm file
-//Be able to read both p2 and p5. 
-//How to read in p5: we need to use the read function. read all at once.
-//The type we will use id uint8_t for the read in of p5
-//Wedge image = an image that goes from black to white from right to left
