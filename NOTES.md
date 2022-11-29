@@ -31,3 +31,26 @@ around that particular pixel.
 
 Likewise, constructor for reading a file is not necessary
 for HW7 Part 2. It's required only for final project.
+
+<!--
+
+Hw7 Part 2 45 pts								    COSC 226 C++
+Chapters 17, 18, 19
+
+Implement a STL-like container for an Image (partial implementation)
+
+Given your design and the mods we made in class today, implement the following:
+
+Implement your image class with
+- Handling for unsigned 8-bit images
+- Constructors for constant images and wedge images
+- Member function to Adjust an image (scale/offset)
+- Member function to histogram an image
+# Driver code to
+- Create a constant image, histogram it, and print the histogram to the screen
+- Create a wedge image, histogram it, and print the histogram to the screen
+
+Turn in your code and some sample output in a text file.  Note -- this is NOT a GUI program!
+
+
+-->
