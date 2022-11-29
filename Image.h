@@ -86,7 +86,7 @@ public :
         totalColumn{DEFAULT_COLUMN},
         totalRow{DEFAULT_ROW},
         maxValue{DEFAULT_MAX_VALUE},
-        values{new int[DEFAULT_COLUMN*DEFAULT_ROW]} {
+        values{new int[size()]} {
             // --------------------------------------------------------
             // Default constructor creates a pgm image with a gradient
             // Example:
@@ -111,7 +111,7 @@ public :
 
             int countColumn {0};
             int countRow {0};
-            for (int i=0; i<DEFAULT_COLUMN*DEFAULT_ROW; ++i) {
+            for (int i=0; i<size(); ++i) {
                 // Count how many columns and how many rows
                 ++countColumn;
                 if (i!=1 && i%DEFAULT_COLUMN==0) {
@@ -147,8 +147,8 @@ public :
         totalColumn{DEFAULT_COLUMN},
         totalRow{DEFAULT_ROW},
         maxValue{DEFAULT_MAX_VALUE},
-        values{new int[DEFAULT_COLUMN*DEFAULT_ROW]} {
-            for (int i=0; i<DEFAULT_COLUMN*DEFAULT_ROW; ++i) {
+        values{new int[size()]} {
+            for (int i=0; i<size(); ++i) {
                 values[i] = valueNew;
             }
         }
