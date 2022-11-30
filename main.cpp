@@ -33,7 +33,7 @@ void Image::setBrightness(double scale, int offset) {
      *    everything requred for the final project specifications 🤩
      */
 
-    // Research on whta is scale (gain) and offset (bias)?
+    // Research on whta is scale (gain) and offset (bias)
 
 }
 
