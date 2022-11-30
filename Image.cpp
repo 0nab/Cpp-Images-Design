@@ -54,26 +54,21 @@ std::ostream& operator<<(std::ostream& ost, const Image& image) {
      *  2. pgmType is P5. In this case, print all values as bytes.
      */
 
-    if (image.pgmType=="P2") {
-        // Output the magic number, image dimension, and maximum value
-        ost<<image.pgmType<<'\n'
-           <<image.totalColumn<<' '<<image.totalRow<<'\n'
-           <<image.maxValue;
+    // Output the magic number, image dimension, and maximum value
+    ost<<image.pgmType<<'\n'
+       <<image.totalColumn<<' '<<image.totalRow<<'\n'
+       <<image.maxValue;
 
-        // Output all color values in ASCII
+    // Output all color values in ASCII
+    if (image.pgmType=="P2") {
         for (int i=0; i<image.size(); ++i) {
             if (i%image.totalColumn==0) ost<<'\n';
             ost<<image.values[i]<<' ';
         }
     }
 
+    // Output all color values as bytes
     else if (image.pgmType=="P5") {
-        // Output the magic number, image dimension, and maximum value
-        ost<<image.pgmType<<'\n'
-           <<image.totalColumn<<' '<<image.totalRow<<'\n'
-           <<image.maxValue<<'\n';
-
-        // Output all color values as bytes
         for (int i=0; i<image.size(); ++i) {
             ost<<char(image.values[i]);
         }
