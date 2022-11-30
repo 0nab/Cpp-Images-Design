@@ -16,8 +16,7 @@ void Image::setBrightness(double scale, int offset) {
     /*
      *  NOTE:
      *  - This function isn't supposed to be here at main.cpp
-     *  but I'm developing it just for the time being because
-     *  it's more convenient to do it here.
+     *  but I'm developing it here just for now.
      *
      *  - With this function, our homework is complete :)
      *
