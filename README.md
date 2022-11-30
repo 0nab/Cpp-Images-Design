@@ -117,7 +117,7 @@ Image Image::getSubset(const int& top, const int& left, const int& right, const 
 Image Image::getSmoothedSubset(const int& smoothValue);
 vector<int>& Image::getHistogram();
 void printHistogram(const Image& image);
-void Image::setBrightness(const int& gain, const int& bias);
+void Image::setBrightness(double scale, int offset);
 ```
 - [ ] A member function for subsetting an image -- i.e.
 extracting a subset of the image.
