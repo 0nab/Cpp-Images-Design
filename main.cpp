@@ -12,7 +12,12 @@
 using namespace std;
 
 // A function for setting brightness via scale and offset
-void Image::setBrightness(int scale, int offset) {
+void Image::setBrightness(double scale, int offset) {
+    // This function isn't supposed to be here at main.cpp
+    // but I'm developing it just for the time being because
+    // it's more convenient to do it here.
+
+    // With this function, our homework is complete :)
 
 }
 
@@ -52,13 +57,14 @@ int main() {
     // ----------------------------------------------------------------
     // 4. Initiate an Image instance using an existing pgm file
     // ----------------------------------------------------------------
-    Image image {"imageGradient.pgm"};
-    cout<<image;
+    Image imageFromFile {"imageGradient.pgm"};
+    cout<<imageFromFile;
 
     // ----------------------------------------------------------------
-    // 5. Example of scaling, offsetting, and then saving these files
+    // 5. Adjust brightness and then save as a new file
     // ----------------------------------------------------------------
-
+    imageFromFile.setBrightness(0.5,-50);
+    pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm")
 
     // Return 0 to signal success
     return 0;
