@@ -45,7 +45,7 @@ bool operator!=(const Image& image1, const Image& image2) {
     return !(image1==image2);
 }
 
-std::ostream& operator<<(std::ostream& ost, const Image image) {
+std::ostream& operator<<(std::ostream& ost, const Image& image) {
     /*
      *  OUTPUT STREAM OPERATOR OVERLOADING
      *
@@ -79,7 +79,85 @@ std::ostream& operator<<(std::ostream& ost, const Image image) {
         }
     }
 
+    // Add a whitespace at the end for better readability
+    ost<<'\n';
+
     return ost;
+}
+
+std::istream& operator>>(std::istream& ist, Image& image) {
+    /*
+     *  INPUT STREAM OPERATOR OVERLOADING
+     *
+     *  Two possibilities:
+     *  1. pgmType is P2. In this case, read color values in ASCII.
+     *  2. pgmType is P5. In this case, read color values as bytes.
+     *
+     */
+
+    // First of all, parse pgmType, image dimensions
+    // (column * row), and the maximum color value.
+    // Ignore any line starting with `#`.
+    const int NUM_OF_CONFIGS {4};
+    int numOfConfigsFound {0};
+    bool isFound {false};
+
+    std::string linesBuffer;
+    std::stringstream lineContainingAllConfigs;
+    while (!isFound && std::getline(ist,linesBuffer)) {
+        if (linesBuffer[0]!='#') {
+
+            // Break the line into words so that we can count
+            // how many configs we've parsed
+            std::stringstream lineBuffer {linesBuffer};
+            std::string wordBuffer;
+            while (lineBuffer>>wordBuffer) {
+                ++numOfConfigsFound;
+                lineContainingAllConfigs<<wordBuffer<<' ';
+
+                // Exit the loop when we found all configs
+                if (numOfConfigsFound>=NUM_OF_CONFIGS) {
+                    isFound = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Assign the config values
+    lineContainingAllConfigs>>image.pgmType
+                            >>image.totalColumn
+                            >>image.totalRow
+                            >>image.maxValue;
+
+    // Reset the current color values
+    delete[] image.values;
+    image.values = new int[image.size()];
+
+    // ---------------------------------------------------------------
+    // 1. If pgmType is "P2", parse color values as string
+    // ---------------------------------------------------------------
+    if (image.pgmType=="P2") {
+        for (int i=0; i<image.size(); ++i) {
+            ist>>image.values[i];
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // 2. If pgmType is "P5", parse color values as bytes
+    // ---------------------------------------------------------------
+    else if (image.pgmType=="P5") {
+        int8_t value;
+        void* valueAddress = &value;
+        for (int i=0; i<image.size(); ++i) {
+            ist.read(static_cast<char*>(valueAddress),sizeof(char));
+            image.values[i] = value;
+        }
+    }
+
+    else std::cout<<"[ERROR] pgmType should be either P2 or P5.";
+
+    return ist;
 }
 
 void pgmSaveAsFile(const Image& image, std::string fileName) {
@@ -123,8 +201,8 @@ void readFileAndPrintWhiteSpaces(std::string fileName) {
     void* valueAddress = &value;
     while (file.read(static_cast<char*>(valueAddress),sizeof(char))) {
         if (value==' ') {std::cout<<"*";}
-        if (value==' ') {std::cout<<"^";}
-        std::cout<<value;
+        else if (value=='\n') {std::cout<<"^";}
+        else std::cout<<value;
     }
 }
 

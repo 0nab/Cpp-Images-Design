@@ -17,9 +17,9 @@
 
 // Constructor variables
 const std::string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
-const int DEFAULT_COLUMN {25};              // Any integer
+const int DEFAULT_COLUMN {30};              // Any integer
 const int DEFAULT_ROW {10};                 // Any integer
-const int DEFAULT_MAX_VALUE {15};           // Any integer from 0 to 255
+const int DEFAULT_MAX_VALUE {255};           // Any integer from 0 to 255
 
 class Image {
 public :
@@ -160,21 +160,24 @@ public :
         totalRow{},
         maxValue{},
         values{} {
-	    std::ifstream file {fileName,std::ios_base::binary};
-	    if (!file) {
-		std::cout<<"[ERROR] Can't open the file.\n";
-		return;
+
+            std::ifstream file {fileName,std::ios_base::binary};
+            if (!file) {
+                std::cout<<"[ERROR] Can't open the file.\n";
+                return;
 	    }
 
-	    // TODO: Debug
-	    /* std::cout<<std::hex; */
+            // TODO: Debug
+            /* std::cout<<std::hex; */
 
-	    int8_t value;
-	    void* valueAddress = &value;
-	    while (file.read(static_cast<char*>(valueAddress),sizeof(char))) {
-		    if (value==' ') {std::cout<<"*";}
-		std::cout<<value;
-	    }
+            int8_t value;
+            void* valueAddress = &value;
+            while (file.read(static_cast<char*>(valueAddress),sizeof(int8_t))) {
+                if (value==' ') std::cout<<"*";
+                else std::cout<<value;
+            }
+
+	    file.close();
         }
 
     // Copy construtor
@@ -200,7 +203,8 @@ public :
 // Operator overloading
 bool operator==(const Image& image1, const Image& image2);
 bool operator!=(const Image& image1, const Image& image2);
-std::ostream& operator<<(std::ostream& ost, const Image image);
+std::ostream& operator<<(std::ostream& ost, const Image& image);
+std::istream& operator>>(std::istream& ist, Image& image);
 
 // Helper functions
 void pgmSaveAsFile(const Image& image, std::string fileName);

@@ -45,7 +45,23 @@ int main() {
     /* cout<<'\n'; */
 
 
-    Image imageFile {"test.pgm"};
+    // TODO: Complete >> operator overloading
+    // Then, complete constructor by file
+
+    /* Image imageFile {"test.pgm"}; */
+
+
+    Image image;
+    pgmSaveAsFile(image,"test-default.pgm");
+
+    std::ifstream file {"imageGradient.pgm",std::ios_base::binary};
+    if (!file) {
+        std::cout<<"[ERROR] Can't open the file.\n";
+    }
+
+    file>>image;
+    pgmSaveAsFile(image,"test-modified.pgm");
+
 
     // Return 0 to signal success
     return 0;
