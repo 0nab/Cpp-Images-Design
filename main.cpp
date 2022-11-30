@@ -36,7 +36,7 @@ int main() {
     pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
     // ----------------------------------------------------------------
-    // 4. Initiate an Image instance using an existing pgm file
+    // 4. Construct using an existing pgm file
     // ----------------------------------------------------------------
     Image imageFromFile {"imageGradient.pgm"};
 
