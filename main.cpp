@@ -41,7 +41,9 @@ int main() {
     Image imageFromFile {"imageGradient.pgm"};
 
     // ----------------------------------------------------------------
-    // 5. Adjust brightness and then save as a new file
+    // 5. Adjust brightness and then save as a file.
+    //    "imageAdjusted.pgm" is saved in P2 form (ASCII).
+    //    "imageAdjustedBinary.pgm" is saved in P5 form (binary).
     // ----------------------------------------------------------------
     imageFromFile.setBrightness(1,-5);
     pgmSaveAsFile(imageFromFile,"imageAdjusted.pgm");
