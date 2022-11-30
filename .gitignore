@@ -10,6 +10,7 @@
 # Ignore test image files
 test-binary.pgm
 imageGradient.pgm
+imageGradientAdjusted.pgm
 imageGrey.pgm
 
 # Ignore compiled executables
