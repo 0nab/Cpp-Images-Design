@@ -22,8 +22,8 @@ void Image::setBrightness(double scale, int offset) {
      *  - With this function, our homework is complete :)
      *
      *  - When submitting this homework, we should only submit
-     *    these three files:
-     *      main.cpp, Image.cpp, and Image.h
+     *    these four files:
+     *      main.cpp, Image.cpp, Image.h, and sample-output.txt
      *
      *    It's okey to sumbit other files here as well, but
      *    it's just that those files are not necessary part of the
