@@ -10,6 +10,9 @@
 
 #include "Image.h"
 
+// --------------------------------------------------------------------
+// Class operator overloading
+// --------------------------------------------------------------------
 Image& Image::operator=(Image&& image) {
     pgmType = image.pgmType;
     totalColumn = image.totalColumn;
@@ -126,7 +129,7 @@ std::istream& operator>>(std::istream& ist, Image& image) {
                             >>image.maxValue;
 
     // Reset the current color values
-    delete[] image.values;
+    if (image.values) delete[] image.values;
     image.values = new int[image.size()];
 
     // ---------------------------------------------------------------
@@ -155,36 +158,37 @@ std::istream& operator>>(std::istream& ist, Image& image) {
     return ist;
 }
 
-void pgmSaveAsFile(const Image& image, std::string fileName) {
-    std::ofstream ofs {fileName};
-    if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
-    else ofs<<image;
+// --------------------------------------------------------------------
+// Constructor by an existing file definition
+// --------------------------------------------------------------------
+Image::Image(std::string fileName) {
+    // Open the file
+    std::ifstream file {fileName,std::ios_base::binary};
+    if (!file) {
+        std::cout<<"[ERROR] Can't open the file.\n";
+        return;
+    }
+
+    // Read the color values from the file
+    file>>*this;
 }
 
-void Image::printHistogram() {
+// --------------------------------------------------------------------
+// Class member functions definitions
+// --------------------------------------------------------------------
+std::vector<int> Image::getHistogram() const {
     // Count occurences of each color value. Initialize a vector with
     // `maxValue+1` elements set to 0.
     std::vector<int> counts(maxValue+1, 0);
     for (int i=0; i<size(); ++i) ++counts[values[i]];
 
-    // Print the results. Align all values neatly.
-    // Find how many widths are required for alignment.
-    const int howManyTens=std::floor(std::log10(maxValue))+1;
-    for (int i=0; i<maxValue+1; ++i) {
-        std::cout<<std::setw(howManyTens)<<i<<':';
-
-        // Calculate percentage and print '*' the same amount
-        double percentage = static_cast<double>(counts[i])/size()*100;
-        percentage = std::round(percentage);
-        for (int count=0; count<percentage; ++count) { std::cout<<'*'; }
-
-        // End of histogram
-        std::cout<<'\n';
-    }
+    return counts;
 }
 
-// A function for setting brightness via scale and offset
 void Image::setBrightness(double scale, int offset) {
+    /*
+     *  A function for setting the brightness of the image
+     */
     for (int i=0; i<size(); ++i) {
         // Apply scale and offset
         values[i] = static_cast<int>(values[i]*scale+offset);
@@ -195,9 +199,48 @@ void Image::setBrightness(double scale, int offset) {
     }
 }
 
-// A function for printing all whitespaces in a file.
-// This function is used only for debugging.
+// --------------------------------------------------------------------
+// Helper functions definitions
+// --------------------------------------------------------------------
+void pgmPrintHistogram(const Image& image) {
+    std::vector<int> counts = image.getHistogram();
+
+    // Print the results. Align all values neatly.
+    // Find how many widths are required for alignment.
+    const int howManyTens=std::floor(std::log10(image.maxValue))+1;
+    for (int i=0; i<image.maxValue+1; ++i) {
+        std::cout<<std::setw(howManyTens)<<i<<':';
+
+        // Calculate percentage and print '*' the same amount
+        double percentage = static_cast<double>(counts[i])/image.size()*100;
+        percentage = std::round(percentage);
+        for (int count=0; count<percentage; ++count) { std::cout<<'*'; }
+
+        // End of histogram
+        std::cout<<'\n';
+    }
+}
+
+void pgmSaveAsFile(const Image& image, std::string fileName) {
+    std::ofstream ofs {fileName};
+    if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
+    else ofs<<image;
+}
+
+void pgmSaveAsFile(Image& image, std::string fileName, std::string pgmType) {
+    // Switch the image's pgmType
+    image.pgmType=pgmType;
+
+    std::ofstream ofs {fileName};
+    if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
+    else ofs<<image;
+}
+
 void readFileAndPrintWhiteSpaces(std::string fileName) {
+    /*
+     *  A function for printing all whitespaces in a file.
+     *  This function is used only for debugging.
+     */
     std::ifstream file {fileName,std::ios_base::binary};
     if (!file) {
         std::cout<<"[ERROR] Can't open the file.\n";

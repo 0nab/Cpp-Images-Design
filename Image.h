@@ -153,93 +153,12 @@ public :
             }
         }
 
-    // Constructor by reading from a file
-    Image(std::string fileName) :
-        pgmType{DEFAULT_PGM_TYPE},
-        totalColumn{DEFAULT_COLUMN},
-        totalRow{DEFAULT_ROW},
-        maxValue{DEFAULT_MAX_VALUE},
-        values{} {
-	    std::ifstream file {fileName,std::ios_base::binary};
-	    if (!file) {
-		std::cout<<"[ERROR] Can't open the file.\n";
-		return;
-	    }
 
-	    // --------------------------------------------------------
-	    // Here, our original plan was to complete this constructor
-	    // with just this one line:
-	    //   file>>*this;
-	    //
-	    // Since we've already implemented >> operator overloading,
-	    // we thought, it would work just like that.
-	    // However, we couldn't find a way to make it work, yet.
-	    // Therefore, we've resorted back to just reusing the
-	    // same piece of code here. Please let us know if there's
-	    // a better way of solving this problem.
-	    // --------------------------------------------------------
-
-	    // First of all, parse pgmType, image dimensions
-	    // (column * row), and the maximum color value.
-	    // Ignore any line starting with `#`.
-	    const int NUM_OF_CONFIGS {4};
-	    int numOfConfigsFound {0};
-	    bool isFound {false};
-
-	    std::string linesBuffer;
-	    std::stringstream lineContainingAllConfigs;
-	    while (!isFound && std::getline(file,linesBuffer)) {
-		if (linesBuffer[0]!='#') {
-
-		    // Break the line into words so that we can count
-		    // how many configs we've parsed
-		    std::stringstream lineBuffer {linesBuffer};
-		    std::string wordBuffer;
-		    while (lineBuffer>>wordBuffer) {
-			++numOfConfigsFound;
-			lineContainingAllConfigs<<wordBuffer<<' ';
-
-			// Exit the loop when we found all configs
-			if (numOfConfigsFound>=NUM_OF_CONFIGS) {
-			    isFound = true;
-			    break;
-			}
-		    }
-		}
-	    }
-
-	    // Assign the config values
-	    lineContainingAllConfigs>>pgmType
-				    >>totalColumn
-				    >>totalRow
-				    >>maxValue;
-
-	    // Initialize color values
-	    values = new int[size()];
-
-	    // ---------------------------------------------------------------
-	    // 1. If pgmType is "P2", parse color values as string
-	    // ---------------------------------------------------------------
-	    if (pgmType=="P2") {
-		for (int i=0; i<size(); ++i) {
-		    file>>values[i];
-		}
-	    }
-
-	    // ---------------------------------------------------------------
-	    // 2. If pgmType is "P5", parse color values as bytes
-	    // ---------------------------------------------------------------
-	    else if (pgmType=="P5") {
-		int8_t value;
-		void* valueAddress = &value;
-		for (int i=0; i<size(); ++i) {
-		    file.read(static_cast<char*>(valueAddress),sizeof(char));
-		    values[i] = value;
-		}
-	    }
-
-	    else std::cout<<"[ERROR] pgmType should be either P2 or P5.";
-        }
+    // Constructor by reading from a file.
+    // While all other constructors use initializer list,
+    // this constructor does not use initializer list because it uses
+    // the >>operator overloading we already defined.
+    Image(std::string fileName);
 
     // Copy construtor
     Image(const Image& image) :
@@ -257,10 +176,8 @@ public :
     // Move assignment operator overloading
     Image& operator=(Image&& image);
 
-    // Histogram function
-    // TODO for final project: separate this into getHistogram
-    // member function and a helper function printHistogram.
-    void printHistogram();
+    // A function for calculating a histogram of the image
+    std::vector<int> getHistogram() const;
 
     // A function for setting brightness via scale and offset
     void setBrightness(double scale, int offset);
@@ -273,7 +190,7 @@ std::ostream& operator<<(std::ostream& ost, const Image& image);
 std::istream& operator>>(std::istream& ist, Image& image);
 
 // Helper functions
-// TODO for final project: using polymorphism, add abother function for
-// pgmSaveAsFile with an option to choose P2 or P5, but default to P2
+void pgmPrintHistogram(const Image& image);
 void pgmSaveAsFile(const Image& image, std::string fileName);
+void pgmSaveAsFile(const Image& image, std::string fileName, std::string pgmType);
 void readFileAndPrintWhiteSpaces(std::string fileName);

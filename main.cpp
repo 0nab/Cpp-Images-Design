@@ -46,6 +46,16 @@ int main() {
     imageFromFile.setBrightness(1,-5);
     pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm");
 
+    Image test;
+    std::ifstream file {"imageGradient.pgm",std::ios_base::binary};
+    if (!file) std::cout<<"[ERROR] Can't open the file.\n";
+
+    // Read the color values from the file
+    file>>test;
+
+    cout<<test;
+
+
     // Return 0 to signal success
     return 0;
 }
