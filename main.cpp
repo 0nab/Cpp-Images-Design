@@ -13,55 +13,42 @@ using namespace std;
 
 int main() {
 
-    /* // ---------------------------------------------------------------- */
-    /* // 1. Create a constant image and print a histogram of the image */
-    /* // ---------------------------------------------------------------- */
-    /* const int CONSTANT_COLOR {13}; */
-    /* Image imageGrey {CONSTANT_COLOR}; */
-    /* imageGrey.printHistogram(); */
-    /*  */
-    /* // Print a whitespace for better readability */
-    /* cout<<'\n'; */
-    /*  */
-    /* // ---------------------------------------------------------------- */
-    /* // 2. Create a wedge image and print a histogram of the image */
-    /* // ---------------------------------------------------------------- */
-    /* Image imageGradient {}; */
-    /* imageGradient.printHistogram(); */
-    /*  */
-    /* // Print a whitespace for better readability */
-    /* cout<<'\n'; */
-    /*  */
-    /* // ---------------------------------------------------------------- */
-    /* // 3. Print and save the example image files */
-    /* // ---------------------------------------------------------------- */
-    /* cout<<imageGrey */
-    /*     <<"\n\n" */
-    /*     <<imageGradient; */
-    /* pgmSaveAsFile(imageGrey,"imageGrey.pgm"); */
-    /* pgmSaveAsFile(imageGradient,"imageGradient.pgm"); */
-    /*  */
-    /* // Print a whitespace for better readability */
-    /* cout<<'\n'; */
+    // ----------------------------------------------------------------
+    // 1. Create a constant image and print a histogram of the image
+    // ----------------------------------------------------------------
+    const int CONSTANT_COLOR {13};
+    Image imageGrey {CONSTANT_COLOR};
+    imageGrey.printHistogram();
 
+    // Print a whitespace for better readability
+    cout<<'\n';
 
-    // TODO: Complete >> operator overloading
-    // Then, complete constructor by file
+    // ----------------------------------------------------------------
+    // 2. Create a wedge image and print a histogram of the image
+    // ----------------------------------------------------------------
+    Image imageGradient {};
+    imageGradient.printHistogram();
 
-    /* Image imageFile {"test.pgm"}; */
+    // Print a whitespace for better readability
+    cout<<'\n';
 
+    // ----------------------------------------------------------------
+    // 3. Save the example image files
+    // ----------------------------------------------------------------
+    cout<<imageGrey
+        <<"\n\n"
+        <<imageGradient;
+    pgmSaveAsFile(imageGrey,"imageGrey.pgm");
+    pgmSaveAsFile(imageGradient,"imageGradient.pgm");
 
-    Image image;
-    pgmSaveAsFile(image,"test-default.pgm");
+    // Print a whitespace for better readability
+    cout<<'\n';
 
-    std::ifstream file {"imageGradient.pgm",std::ios_base::binary};
-    if (!file) {
-        std::cout<<"[ERROR] Can't open the file.\n";
-    }
-
-    file>>image;
-    pgmSaveAsFile(image,"test-modified.pgm");
-
+    // ----------------------------------------------------------------
+    // 4. Initiate an Image instance using an existing pgm file
+    // ----------------------------------------------------------------
+    Image image {"imageGradient.pgm"};
+    cout<<image;
 
     // Return 0 to signal success
     return 0;

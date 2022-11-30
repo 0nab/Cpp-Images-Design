@@ -19,7 +19,7 @@
 const std::string DEFAULT_PGM_TYPE {"P2"};  // "P2" or "P5"
 const int DEFAULT_COLUMN {30};              // Any integer
 const int DEFAULT_ROW {10};                 // Any integer
-const int DEFAULT_MAX_VALUE {255};           // Any integer from 0 to 255
+const int DEFAULT_MAX_VALUE {15};           // Any integer from 0 to 255
 
 class Image {
 public :
@@ -155,29 +155,90 @@ public :
 
     // Constructor by reading from a file
     Image(std::string fileName) :
-        pgmType{},
-        totalColumn{},
-        totalRow{},
-        maxValue{},
+        pgmType{DEFAULT_PGM_TYPE},
+        totalColumn{DEFAULT_COLUMN},
+        totalRow{DEFAULT_ROW},
+        maxValue{DEFAULT_MAX_VALUE},
         values{} {
-
-            std::ifstream file {fileName,std::ios_base::binary};
-            if (!file) {
-                std::cout<<"[ERROR] Can't open the file.\n";
-                return;
+	    std::ifstream file {fileName,std::ios_base::binary};
+	    if (!file) {
+		std::cout<<"[ERROR] Can't open the file.\n";
+		return;
 	    }
 
-            // TODO: Debug
-            /* std::cout<<std::hex; */
+	    // --------------------------------------------------------
+	    // Here, our original plan was to complete this constructor
+	    // with just this one line:
+	    //   file>>*this;
+	    //
+	    // Since we've already implemented >> operator overloading,
+	    // we thought, it would work just like that.
+	    // However, we couldn't find a way to make it work, yet.
+	    // Therefore, we've resorted back to just reusing the
+	    // same piece of code here. Please let us know if there's
+	    // a better way of solving this problem.
+	    // --------------------------------------------------------
 
-            int8_t value;
-            void* valueAddress = &value;
-            while (file.read(static_cast<char*>(valueAddress),sizeof(int8_t))) {
-                if (value==' ') std::cout<<"*";
-                else std::cout<<value;
-            }
+	    // First of all, parse pgmType, image dimensions
+	    // (column * row), and the maximum color value.
+	    // Ignore any line starting with `#`.
+	    const int NUM_OF_CONFIGS {4};
+	    int numOfConfigsFound {0};
+	    bool isFound {false};
 
-	    file.close();
+	    std::string linesBuffer;
+	    std::stringstream lineContainingAllConfigs;
+	    while (!isFound && std::getline(file,linesBuffer)) {
+		if (linesBuffer[0]!='#') {
+
+		    // Break the line into words so that we can count
+		    // how many configs we've parsed
+		    std::stringstream lineBuffer {linesBuffer};
+		    std::string wordBuffer;
+		    while (lineBuffer>>wordBuffer) {
+			++numOfConfigsFound;
+			lineContainingAllConfigs<<wordBuffer<<' ';
+
+			// Exit the loop when we found all configs
+			if (numOfConfigsFound>=NUM_OF_CONFIGS) {
+			    isFound = true;
+			    break;
+			}
+		    }
+		}
+	    }
+
+	    // Assign the config values
+	    lineContainingAllConfigs>>pgmType
+				    >>totalColumn
+				    >>totalRow
+				    >>maxValue;
+
+	    // Initialize color values
+	    values = new int[size()];
+
+	    // ---------------------------------------------------------------
+	    // 1. If pgmType is "P2", parse color values as string
+	    // ---------------------------------------------------------------
+	    if (pgmType=="P2") {
+		for (int i=0; i<size(); ++i) {
+		    file>>values[i];
+		}
+	    }
+
+	    // ---------------------------------------------------------------
+	    // 2. If pgmType is "P5", parse color values as bytes
+	    // ---------------------------------------------------------------
+	    else if (pgmType=="P5") {
+		int8_t value;
+		void* valueAddress = &value;
+		for (int i=0; i<size(); ++i) {
+		    file.read(static_cast<char*>(valueAddress),sizeof(char));
+		    values[i] = value;
+		}
+	    }
+
+	    else std::cout<<"[ERROR] pgmType should be either P2 or P5.";
         }
 
     // Copy construtor
