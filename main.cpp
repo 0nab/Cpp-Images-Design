@@ -13,11 +13,16 @@ using namespace std;
 
 // A function for setting brightness via scale and offset
 void Image::setBrightness(double scale, int offset) {
-    // This function isn't supposed to be here at main.cpp
-    // but I'm developing it just for the time being because
-    // it's more convenient to do it here.
+    /*
+     *  NOTE:
+     *  This function isn't supposed to be here at main.cpp
+     *  but I'm developing it just for the time being because
+     *  it's more convenient to do it here.
+     *
+     *  With this function, our homework is complete :)
+     */
 
-    // With this function, our homework is complete :)
+    // Research on whta is scale (gain) and offset (bias)?
 
 }
 
@@ -63,8 +68,8 @@ int main() {
     // ----------------------------------------------------------------
     // 5. Adjust brightness and then save as a new file
     // ----------------------------------------------------------------
-    imageFromFile.setBrightness(0.5,-50);
-    pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm")
+    // imageFromFile.setBrightness(0.5,-50);
+    // pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm");
 
     // Return 0 to signal success
     return 0;
