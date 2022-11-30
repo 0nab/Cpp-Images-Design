@@ -15,11 +15,23 @@ using namespace std;
 void Image::setBrightness(double scale, int offset) {
     /*
      *  NOTE:
-     *  This function isn't supposed to be here at main.cpp
+     *  - This function isn't supposed to be here at main.cpp
      *  but I'm developing it just for the time being because
      *  it's more convenient to do it here.
      *
-     *  With this function, our homework is complete :)
+     *  - With this function, our homework is complete :)
+     *
+     *  - When submitting this homework, we should only submit
+     *    these three files:
+     *      main.cpp, Image.cpp, and Image.h
+     *
+     *    It's okey to sumbit other files here as well, but
+     *    it's just that those files are not necessary part of the
+     *    assignment.
+     *
+     *  - For our final project, we just gotta add a few member
+     *    functions. Other than that, we've already implemented
+     *    everything requred for the final project specifications 🤩
      */
 
     // Research on whta is scale (gain) and offset (bias)?
