@@ -11,6 +11,17 @@
 #include "Image.h"
 using namespace std;
 
+// Scale function
+void adjust(int scaleInput) {
+
+}
+
+// Offset function
+void adjust(int xOffset, int yOffset) {
+
+}
+
+
 int main() {
 
     // ----------------------------------------------------------------
@@ -49,6 +60,11 @@ int main() {
     // ----------------------------------------------------------------
     Image image {"imageGradient.pgm"};
     cout<<image;
+
+    // ----------------------------------------------------------------
+    // 5. Example of scaling, offsetting, and then saving these files
+    // ----------------------------------------------------------------
+
 
     // Return 0 to signal success
     return 0;

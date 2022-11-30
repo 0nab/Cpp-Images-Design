@@ -259,6 +259,12 @@ public :
 
     // Histogram function
     void printHistogram();
+
+    // Scale function
+    void adjust(int scaleInput);
+
+    // Offset function
+    void adjust(int xOffset, int yOffset);
 };
 
 // Operator overloading
