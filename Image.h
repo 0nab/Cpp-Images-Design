@@ -258,8 +258,8 @@ public :
     Image& operator=(Image&& image);
 
     // Histogram function
-    // TODO: separate this into getHistogram member function and
-    // a helper function with the same name of printHistogram.
+    // TODO for final project: separate this into getHistogram
+    // member function and a helper function printHistogram.
     void printHistogram();
 
     // A function for setting brightness via scale and offset
@@ -273,7 +273,7 @@ std::ostream& operator<<(std::ostream& ost, const Image& image);
 std::istream& operator>>(std::istream& ist, Image& image);
 
 // Helper functions
-// TODO: using polymorphism, add abother function for
+// TODO for final project: using polymorphism, add abother function for
 // pgmSaveAsFile with an option to choose P2 or P5, but default to P2
 void pgmSaveAsFile(const Image& image, std::string fileName);
 void readFileAndPrintWhiteSpaces(std::string fileName);
