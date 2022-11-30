@@ -260,11 +260,8 @@ public :
     // Histogram function
     void printHistogram();
 
-    // Scale function
-    void adjust(int scaleInput);
-
-    // Offset function
-    void adjust(int xOffset, int yOffset);
+    // A function for setting brightness via scale and offset
+    void setBrightness(int scale, int offset);
 };
 
 // Operator overloading
