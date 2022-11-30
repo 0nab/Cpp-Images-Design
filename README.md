@@ -115,17 +115,17 @@ Source: https://en.wikipedia.org/wiki/Netpbm#File_formats
 // Image.h
 Image Image::getSubset(const int& top, const int& left, const int& right, const int& bottom);
 Image Image::getSmoothedSubset(const int& smoothValue);
-void Image::adjust(int scalePercentage);
-void Image::adjust(int xOffset, int yOffset);
-void Image::printHistogram();
+vector<int>& Image::getHistogram();
+void printHistogram(const Image& image);
 void Image::setBrightness(const int& gain, const int& bias);
 ```
-- [ ] A function for subsetting an image -- i.e.
+- [ ] A member function for subsetting an image -- i.e.
 extracting a subset of the image.
-- [ ] A function for extracting a smoothed, downsampled subset.
-- [ ] A function for scaling or offsetting the image.
-- [ ] A function for printing a histogram, which is a vector of brightness-pixel-value counts.
-- [ ] A function for adjusting brightness by scaling and offsetting
+- [ ] A member function for extracting a smoothed, downsampled subset.
+- [ ] A member function for computing a histogram.
+It should be in the form of a vector of brightness-pixel-value counts.
+- [ ] A helper function to get the histogram and print it nicely.
+- [ ] A member function for adjusting brightness by scaling and offsetting
 -- i.e. gain and bias.
 
 <br>
