@@ -25,8 +25,8 @@ void Image::setBrightness(double scale, int offset) {
      *      main.cpp, Image.cpp, Image.h, and sample-output.txt
      *
      *  - It's okey to sumbit other files here as well, but
-     *    it's just that those files are not necessary part of the
-     *    assignment.
+     *    it's just that those files are not a necessary part of the
+     *    assignment. Those are just for git, etc.
      *
      *  - For the final project, we just gotta add a few member
      *    functions. Other than that, we've already implemented
