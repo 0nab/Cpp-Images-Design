@@ -183,6 +183,18 @@ void Image::printHistogram() {
     }
 }
 
+// A function for setting brightness via scale and offset
+void Image::setBrightness(double scale, int offset) {
+    for (int i=0; i<size(); ++i) {
+        // Apply scale and offset
+        values[i] = static_cast<int>(values[i]*scale+offset);
+
+        // Range check
+        if (values[i]>maxValue) values[i]=maxValue;
+        else if (values[i]<0) values[i]=0;
+    }
+}
+
 // A function for printing all whitespaces in a file.
 // This function is used only for debugging.
 void readFileAndPrintWhiteSpaces(std::string fileName) {

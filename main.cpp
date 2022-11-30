@@ -11,32 +11,6 @@
 #include "Image.h"
 using namespace std;
 
-// A function for setting brightness via scale and offset
-void Image::setBrightness(double scale, int offset) {
-    /*
-     *  NOTE:
-     *  - This function isn't supposed to be here at main.cpp
-     *  but I'm developing it here just for now.
-     *
-     *  - With this function, our homework is complete :)
-     *
-     *  - When submitting this homework, we should only submit
-     *    these four files:
-     *      main.cpp, Image.cpp, Image.h, and sample-output.txt
-     *
-     *  - It's okey to sumbit other files here as well, but
-     *    it's just that those files are not a necessary part of the
-     *    assignment. Those are just for git, etc.
-     *
-     *  - For the final project, we just gotta add a few member
-     *    functions. Other than that, we've already implemented
-     *    everything requred for the final project specifications 🤩
-     */
-
-    // Research on whta is scale (gain) and offset (bias)
-
-}
-
 int main() {
 
     // ----------------------------------------------------------------
@@ -79,8 +53,8 @@ int main() {
     // ----------------------------------------------------------------
     // 5. Adjust brightness and then save as a new file
     // ----------------------------------------------------------------
-    // imageFromFile.setBrightness(0.5,-50);
-    // pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm");
+    imageFromFile.setBrightness(1,-5);
+    pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm");
 
     // Return 0 to signal success
     return 0;
