@@ -44,17 +44,8 @@ int main() {
     // 5. Adjust brightness and then save as a new file
     // ----------------------------------------------------------------
     imageFromFile.setBrightness(1,-5);
-    pgmSaveAsFile(imageFromFile,"imageGradientAdjusted.pgm","P5");
-    /*  */
-    /* Image test; */
-    /* std::ifstream file {"imageGradientAdjusted.pgm",std::ios_base::binary}; */
-    /* if (!file) std::cout<<"[ERROR] Can't open the file.\n"; */
-    /*  */
-    /* // Read the color values from the file */
-    /* file>>test; */
-    /*  */
-    /* cout<<test; */
-    /*  */
+    pgmSaveAsFile(imageFromFile,"imageAdjusted.pgm");
+    pgmSaveAsFile(imageFromFile,"imageAdjustedBinary.pgm","P5");
 
     // Return 0 to signal success
     return 0;

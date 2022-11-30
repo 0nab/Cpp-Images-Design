@@ -60,7 +60,7 @@ std::ostream& operator<<(std::ostream& ost, const Image& image) {
     // Output the magic number, image dimension, and maximum value
     ost<<image.pgmType<<'\n'
        <<image.totalColumn<<' '<<image.totalRow<<'\n'
-       <<image.maxValue;
+       <<image.maxValue<<'\n';
 
     // Output all color values in ASCII
     if (image.pgmType=="P2") {
@@ -129,7 +129,6 @@ std::istream& operator>>(std::istream& ist, Image& image) {
                             >>image.maxValue;
 
     // Reset the current color values
-    if (image.values) delete[] image.values;
     image.values = new int[image.size()];
 
     // ---------------------------------------------------------------
