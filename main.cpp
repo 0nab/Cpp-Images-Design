@@ -24,9 +24,9 @@ int main() {
     cout<<'\n';
 
     // ----------------------------------------------------------------
-    // 2. Create a wedge image and print a histogram of the image
+    // 2. Create a gradient image and print a histogram of the image
     // ----------------------------------------------------------------
-    Image imageGradient {};
+    Image imageGradient {};  // Default constructor creates a gradient
     pgmPrintHistogram(imageGradient);
 
     // ----------------------------------------------------------------
