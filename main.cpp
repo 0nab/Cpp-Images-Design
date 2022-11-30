@@ -11,16 +11,10 @@
 #include "Image.h"
 using namespace std;
 
-// Scale function
-void adjust(int scaleInput) {
+// A function for setting brightness via scale and offset
+void Image::setBrightness(int scale, int offset) {
 
 }
-
-// Offset function
-void adjust(int xOffset, int yOffset) {
-
-}
-
 
 int main() {
 
