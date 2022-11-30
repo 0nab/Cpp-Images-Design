@@ -191,11 +191,11 @@ void Image::printHistogram() {
 // A function for printing all whitespaces in a file.
 // This function is used only for debugging.
 void readFileAndPrintWhiteSpaces(std::string fileName) {
-	std::ifstream file {fileName,std::ios_base::binary};
-	if (!file) {
+    std::ifstream file {fileName,std::ios_base::binary};
+    if (!file) {
         std::cout<<"[ERROR] Can't open the file.\n";
         return;
-	}
+    }
 
     int8_t value;
     void* valueAddress = &value;
