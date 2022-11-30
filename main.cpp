@@ -29,26 +29,16 @@ int main() {
     Image imageGradient {};
     imageGradient.printHistogram();
 
-    // Print a whitespace for better readability
-    cout<<'\n';
-
     // ----------------------------------------------------------------
     // 3. Save the example image files
     // ----------------------------------------------------------------
-    cout<<imageGrey
-        <<"\n\n"
-        <<imageGradient;
     pgmSaveAsFile(imageGrey,"imageGrey.pgm");
     pgmSaveAsFile(imageGradient,"imageGradient.pgm");
-
-    // Print a whitespace for better readability
-    cout<<'\n';
 
     // ----------------------------------------------------------------
     // 4. Initiate an Image instance using an existing pgm file
     // ----------------------------------------------------------------
     Image imageFromFile {"imageGradient.pgm"};
-    cout<<imageFromFile;
 
     // ----------------------------------------------------------------
     // 5. Adjust brightness and then save as a new file
