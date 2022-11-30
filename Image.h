@@ -192,5 +192,5 @@ std::istream& operator>>(std::istream& ist, Image& image);
 // Helper functions
 void pgmPrintHistogram(const Image& image);
 void pgmSaveAsFile(const Image& image, std::string fileName);
-void pgmSaveAsFile(const Image& image, std::string fileName, std::string pgmType);
+void pgmSaveAsFile(Image& image, std::string fileName, std::string pgmType);
 void readFileAndPrintWhiteSpaces(std::string fileName);

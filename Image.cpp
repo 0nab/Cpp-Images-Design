@@ -228,12 +228,34 @@ void pgmSaveAsFile(const Image& image, std::string fileName) {
 }
 
 void pgmSaveAsFile(Image& image, std::string fileName, std::string pgmType) {
-    // Switch the image's pgmType
-    image.pgmType=pgmType;
+    /*
+     * TWO POSSIBILITES
+     * 1. If the pgmType in the funciton call is not the same as
+     *    the pgmType that the image already has.
+     *    In this case, change the pgmType to that one temporarily
+     *    and then change it back to the original when all is done.
 
-    std::ofstream ofs {fileName};
-    if (!ofs) std::cout<<"[ERROR] Failed to initiate an output stream.\n";
-    else ofs<<image;
+     * 2. If the pgmType in the function call is the same.
+     *    In this case, just proceed as normal.
+     */
+
+    // 1. If the pgmType in the function call is not the same
+    if (image.pgmType!=pgmType) {
+        std::string pgmTypeBackup = image.pgmType;
+        image.pgmType = pgmType;
+
+        // Save as a file
+        pgmSaveAsFile(image,fileName);
+
+        // Restore the original pgmType
+        image.pgmType = pgmTypeBackup;
+    }
+
+    // 2. If the pgmType in the function call is the same.
+    else if (image.pgmType==pgmType) {
+        // Save as a file
+        pgmSaveAsFile(image,fileName);
+    }
 }
 
 void readFileAndPrintWhiteSpaces(std::string fileName) {
