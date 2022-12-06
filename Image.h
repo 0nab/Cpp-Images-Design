@@ -79,6 +79,7 @@ public :
 
     int operator[](int i) { return values[i]; }
     const int operator[](int i) const { return values[i]; }
+    int getColumntotal() { return totalColumn; }
 
     // Default constructor
     Image() :
@@ -153,6 +154,18 @@ public :
             }
         }
 
+    // Constructor by columnLength, rowLength, max value, and pgm type.
+    Image(int columnLength, int rowLength, int maxVal) :
+        pgmType{DEFAULT_PGM_TYPE},
+        totalColumn{columnLength},
+        totalRow{rowLength},
+        maxValue{maxVal},
+        values{new int[size()]} {
+            for (int i=0; i<size(); ++i) {
+                values[i] = 0;
+            }
+        }
+
 
     // Constructor by reading from a file.
     // While all other constructors use initializer list,
@@ -176,11 +189,20 @@ public :
     // Move assignment operator overloading
     Image& operator=(Image&& image);
 
+    // Move assignment operator overloading
+    std::vector<int>& operator=(std::vector<int>&& vector);
+
     // A function for calculating a histogram of the image
     std::vector<int> getHistogram() const;
 
     // A function for setting brightness via scale and offset
     void setBrightness(double scale, int offset);
+
+    // A function for returning a subsett
+    Image subset(int edge1X, int edge1Y, int edge2X, int edge2Y);
+
+    // A function to downsample an image
+    Image downsample(bool smothing);
 };
 
 // Operator overloading

@@ -49,6 +49,14 @@ int main() {
     pgmSaveAsFile(imageFromFile,"imageAdjusted.pgm");
     pgmSaveAsFile(imageFromFile,"imageAdjustedBinary.pgm","P5");
 
+    Image small {"gator.pgm"};
+    Image smallAdjusted = small.subset(1,1,300,300);
+    pgmSaveAsFile(smallAdjusted,"gatorSubset.pgm");
+
+    Image big {"gator.pgm"};
+    Image bigAdjusted = big.downsample(true);
+    pgmSaveAsFile(bigAdjusted,"gatorAdjusted.pgm");
+
     // Return 0 to signal success
     return 0;
 }

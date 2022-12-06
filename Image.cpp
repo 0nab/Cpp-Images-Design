@@ -198,6 +198,102 @@ void Image::setBrightness(double scale, int offset) {
     }
 }
 
+Image Image::subset(int edge1X, int edge1Y, int edge2X, int edge2Y) {
+    std::vector<int> subset; 
+    int locationOne = edge1X+(totalColumn*(edge1Y - 1));
+    int locationTwo = edge2X+(totalColumn*(edge2Y - 1));
+    int columnCounter = edge1X;
+    int rowCounter = edge1Y;
+
+    for(int i = locationOne - 1; i <= locationTwo - 1; i++) {
+        if(columnCounter >= edge1X && columnCounter <= edge2X) {
+            subset.push_back(values[i]);
+        }
+
+        if(columnCounter >= totalColumn) {
+            columnCounter = 1;
+        }
+        else {
+            columnCounter++;
+        }
+    }
+
+    Image subsetImage {(edge2X - edge1X)+1, edge2Y - edge1Y, maxValue};
+
+    for (int i = 0; i <= subsetImage.size(); i++) {
+        subsetImage.values[i] = subset[i];
+    }
+
+    /*for(int i = 0; i <= subset.size(); i++) {
+        subsetImage.values[i] = subset[i];
+    }
+
+    for(int i = 0; i <= subsetImage.size(); i++) {
+        std::cout << subsetImage.values[i] << ", ";
+    }*/
+
+    return subsetImage;
+}
+
+Image Image::downsample(bool smothing) {
+    std::vector<int> downSampleVector;
+    bool skipColumn = (totalColumn%2 == 0);
+    bool skipRow = (totalRow%2 == 0);
+    int jump = totalColumn + 1;
+    int leap = totalColumn + skipColumn;
+    int sampleNumber = (totalColumn/2)-skipColumn; 
+    int sampleNumberRow = (totalRow/2)-skipRow; 
+    int sampleCounter = 0;
+    int rowJump;
+    int boxValue;
+    int boxAverage;
+
+    if(skipColumn) {
+        boxValue = 8;
+    }
+    else {
+        boxValue = 9;
+    }
+
+    if(skipRow) {
+        rowJump = totalColumn;
+    }
+    else {
+        rowJump = 0;
+    }
+
+    for(int i = jump; i <= size() - rowJump; i++) {
+        if(sampleCounter == sampleNumber){
+            i = i + leap;
+            sampleCounter = 0;
+        }
+        else {
+            //std::cout << values[i - boxValue - 1] << " " << values[i-boxValue] << " " << values[i - boxValue + 1] << "\n" << "\n";
+            //std::cout << values[i - 1] << " " << values[i] << " " << values[i + 1] << "\n" << "\n";
+            //std::cout << values[i + boxValue - 1] << " " << values[i + boxValue] << " " << values[i + boxValue + 1] << "\n" << "\n";
+            boxAverage = (values[i - boxValue - 1] + values[i-boxValue] + values[i - boxValue + 1] + values[i - 1] + values[i] + 
+                            values[i + 1] + values[i + boxValue - 1] + values[i + boxValue] + values[i + boxValue + 1])/9;
+            downSampleVector.push_back(boxAverage);
+            i++;
+            sampleCounter++;
+            
+        }
+    }
+    Image downsampleImage {sampleNumber, sampleNumberRow, maxValue};
+
+    for (int i = 0; i <= downsampleImage.size(); i++) {
+        downsampleImage.values[i] = downSampleVector[i];
+    }
+
+    std::cout << "-------------------";
+
+    for (int i = 0; i <= downSampleVector.size(); i++) {
+        std::cout << downSampleVector[i] << "\n";
+    }
+
+    return downsampleImage;
+}
+
 // --------------------------------------------------------------------
 // Helper functions definitions
 // --------------------------------------------------------------------
@@ -277,4 +373,6 @@ void readFileAndPrintWhiteSpaces(std::string fileName) {
     }
 }
 
-
+//NOTES
+//Need to make sure user can choose to smooth or not
+//Only works for P2 needs to work for P5
