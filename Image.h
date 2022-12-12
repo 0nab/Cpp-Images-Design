@@ -155,16 +155,16 @@ public :
         }
 
     // Constructor by columnLength, rowLength, max value, and pgm type.
-    Image(int columnLength, int rowLength, int maxVal) :
-        pgmType{DEFAULT_PGM_TYPE},
-        totalColumn{columnLength},
-        totalRow{rowLength},
-        maxValue{maxVal},
-        values{new int[size()]} {
-            for (int i=0; i<size(); ++i) {
-                values[i] = 0;
+    Image(int columnLength, int rowLength, int maxVal, const std::string typePgm) :   
+            pgmType{typePgm},
+            totalColumn{columnLength},
+            totalRow{rowLength},
+            maxValue{maxVal},
+            values{new int[size()]} {
+                for (int i=0; i<size(); ++i) {
+                    values[i] = 0;
+                }
             }
-        }
 
 
     // Constructor by reading from a file.
