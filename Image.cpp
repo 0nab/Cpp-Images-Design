@@ -149,7 +149,6 @@ std::istream& operator>>(std::istream& ist, Image& image) {
         for (int i=0; i<image.size(); ++i) {
             ist.read(static_cast<char*>(valueAddress),sizeof(char));
             image.values[i] = value;
-            std::cout << value;
         }
     }
 
@@ -224,99 +223,13 @@ Image Image::subset(int edge1X, int edge1Y, int edge2X, int edge2Y) {
     for (int i = 0; i <= subsetImage.size(); i++) {
         subsetImage.values[i] = subset[i];
     }
-
-    /*for(int i = 0; i <= subset.size(); i++) {
-        subsetImage.values[i] = subset[i];
-    }
-
-    for(int i = 0; i <= subsetImage.size(); i++) {
-        std::cout << subsetImage.values[i] << ", ";
-    }*/
-
-
-
     return subsetImage;
 }
-
-/*
-Image Image::downsample(bool smothing) {
-    std::vector<int> downSampleVector;
-    bool skipColumn = (totalColumn%2 == 0);
-    bool skipRow = (totalRow%2 == 0);
-    int jump = totalColumn + 1;
-    int leap = totalColumn + skipColumn;
-    int sampleNumber = (totalColumn/2)-skipColumn; 
-    int sampleNumberRow = (totalRow/2)-skipRow;  
-    int sampleCounter = 0;
-    int rowJump;
-    int boxValue;
-    int boxAverage;
-
-    if(skipColumn) {
-        boxValue = 8;
-    }
-    else {
-        boxValue = 9;
-    }
-
-    if(skipRow) {
-        rowJump = totalColumn;
-    }
-    else {
-        rowJump = 0;
-    }
-
-    for(int i = jump; i <= size() - rowJump; i++) {
-        if(sampleCounter == sampleNumber){
-            i = i + leap;
-            sampleCounter = 0;
-        }
-        else {
-            if(smothing) {
-                //std::cout << values[i - boxValue - 1] << " " << values[i-boxValue] << " " << values[i - boxValue + 1] << "\n" << "\n";
-                //std::cout << values[i - 1] << " " << values[i] << " " << values[i + 1] << "\n" << "\n";
-                //std::cout << values[i + boxValue - 1] << " " << values[i + boxValue] << " " << values[i + boxValue + 1] << "\n" << "\n";
-                
-                
-                boxAverage = (values[i - boxValue - 1] + values[i-boxValue] + values[i - boxValue + 1] + values[i - 1] + values[i] + 
-                                values[i + 1] + values[i + boxValue - 1] + values[i + boxValue] + values[i + boxValue + 1])/9;
-                downSampleVector.push_back(boxAverage);
-
-                std::cout << boxAverage << ", ";
-            }
-            else {
-                downSampleVector.push_back(values[i]);
-                std::cout << "not smoth";
-            }
-            i++;
-            sampleCounter++;
-            
-        }
-    }
-    Image downsampleImage {sampleNumber, sampleNumberRow, maxValue};
-
-    for (int i = 0; i <= downsampleImage.size(); i++) {
-        downsampleImage.values[i] = downSampleVector[i];
-    }
-    std::cout << "\n";
-
-    for (int i = 0; i <= downsampleImage.size(); i++) {
-        std::cout << downsampleImage.values[i] << ", ";
-    }
-
-    return downsampleImage;
-}
-*/
 
 Image Image::downsample(bool smothing) {
     int columnSampleTotal;
     int rowSampleTotal;
     int boxAverage;
-    /*
-    for(int i = 0; i<size();i++) {
-        std::cout << values[i];
-    }
-    */
 
     (totalColumn % 2 == 0) ? columnSampleTotal = (totalColumn/2)-1 :  columnSampleTotal = (totalColumn/2);
     (totalRow % 2 == 0) ? rowSampleTotal = (totalRow/2)-1 :  rowSampleTotal = (totalRow/2);
@@ -328,12 +241,6 @@ Image Image::downsample(bool smothing) {
         for(int j = 0; j < totalColumn-1; j++) {
             if(i%2 == 1 && j%2 == 1) {
                 if (smothing) { 
-                    /*
-                    std::cout << values[((i*totalColumn) + j) - totalColumn - 1] << ", " << values[((i*totalColumn) + j) - totalColumn] << ", " << values[((i*totalColumn) + j) - totalColumn + 1] << "\n"; 
-                    std::cout << values[((i*totalColumn) + j) - 1] << ", " << values[((i*totalColumn) + j)] << ", " << values[((i*totalColumn) + j) + 1] << "\n"; 
-                    std::cout << values[((i*totalColumn) + j) + totalColumn - 1] << ", " << values[((i*totalColumn) + j) + totalColumn] << ", " << values[((i*totalColumn) + j) + totalColumn + 1] << "\n"; 
-                    std::cout << "\n";
-                    */
                     
                     boxAverage = (values[((i*totalColumn) + j) - totalColumn - 1] + values[((i*totalColumn) + j) - totalColumn] + values[((i*totalColumn) + j) - totalColumn + 1] +
                                     values[((i*totalColumn) + j) - 1] + values[((i*totalColumn) + j)] + values[((i*totalColumn) + j) + 1] + 
@@ -342,17 +249,10 @@ Image Image::downsample(bool smothing) {
                     returnImage.values[pushback] = boxAverage;
                 }
                 else { returnImage.values[pushback] = values[(i*totalColumn) + j]; }
-                //std::cout << values[(i*totalColumn) + j] << "\n";
                 pushback++;
             }
         }
     }
-    /*
-    for (int i = 0; i < returnImage.size(); i++) {
-        std::cout << returnImage.values[i] << ", ";
-    }
-    */
-
     return returnImage;
 }
 

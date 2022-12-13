@@ -49,15 +49,15 @@ int main() {
     pgmSaveAsFile(imageFromFile,"imageAdjusted.pgm");
     pgmSaveAsFile(imageFromFile,"imageAdjustedBinary.pgm","P5");
 
-    Image subset {"buffalo.pgm"};
+    Image subset {"gator.pgm"};
     Image subsetreturn = subset.subset(100,100,200,200);
     pgmSaveAsFile(subsetreturn,"subset.pgm");
 
-    Image downsample {"buffalo.pgm"};
+    Image downsample {"gator.pgm"};
     Image downsampleReturn = downsample.downsample(false);
     pgmSaveAsFile(downsampleReturn,"downsample.pgm");
 
-    Image downsampleSmooth {"buffalo.pgm"};
+    Image downsampleSmooth {"gator.pgm"};
     Image downsampleSmoothReturn = downsampleSmooth.downsample(true);
     pgmSaveAsFile(downsampleSmoothReturn,"downsampleSooth.pgm");
 
